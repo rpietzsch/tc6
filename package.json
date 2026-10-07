@@ -1,0 +1,14 @@
+{
+  "name": "tc-werkstatt",
+  "private": true,
+  "description": "Lernportal Technik/Computer Klasse 6 (statische Seite). Das Paket dient nur den Tests.",
+  "license": "MIT",
+  "scripts": {
+    "validate": "node tests/validate-kapitel.js",
+    "smoke": "node tests/smoke-reset.js",
+    "test": "node tests/validate-kapitel.js && node tests/smoke-reset.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.50.0"
+  }
+}
