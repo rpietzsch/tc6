@@ -68,12 +68,11 @@ tests/smoke-reset.js         Rauchtest im Browser (Playwright), startet selbst e
 
 - Repository: `rpietzsch/tc6`, öffentlich, Auslieferung über GitHub Pages (Schritt A erledigt).
 - Lizenz: MIT für alles Eigene (`LICENSE`). Die Seite enthält keine kopierten Fremdinhalte, nur Links. Der Lehrplanauszug in `docs/` ist ein Auszug aus einer amtlichen Quelle und steht nicht unter dieser Lizenz. Lokal eingebundene Schriften (Schritt C) behalten ihre SIL Open Font License.
-- Impressum: entfällt, da kein geschäftsmäßiges Angebot (rein privat, nicht kommerziell). Eine Datenschutzerklärung ist davon getrennt zu betrachten; siehe Schritt C.
+- Impressum: entfällt, da kein geschäftsmäßiges Angebot (rein privat, nicht kommerziell). Ein Datenschutzhinweis steht trotzdem auf der Übersicht (siehe Schritt C).
 
 ## Offene Entscheidungen
 
 1. „Kapitelweise zurücksetzen“ ist als Blatt umgesetzt. Ob zusätzlich je Gruppe gewünscht ist, ist offen.
-2. Datenschutzhinweis: Ob die Seite trotz fehlender Drittanfragen einen kurzen Hinweis bekommen soll (Fortschritt nur im Browser, Hosting bei GitHub Pages), ist vom Nutzer zu entscheiden. Keine Rechtsberatung von hier.
 
 ## Plan
 
@@ -85,12 +84,12 @@ tests/smoke-reset.js         Rauchtest im Browser (Playwright), startet selbst e
 
 - [x] Zielstruktur, Loader, `marked` als Datei im Repository, Umwandlung aller 14 Blätter, `eva.svg`, feste IDs, Prüfskript und Action. Das Format hat der Nutzer bestätigt (`docs/markdown-format.md`).
 
-### Schritt C: öffentlich tauglich machen (erledigt bis auf den Datenschutzhinweis)
+### Schritt C: öffentlich tauglich machen (erledigt)
 
 - [x] Schriften lokal (Atkinson Hyperlegible, Barlow Semi Condensed, IBM Plex Mono; nur Latin-Teilmenge, SIL OFL, Lizenztexte in `assets/fonts/`).
 - [x] `CONTRIBUTING.md`.
 - [x] Elternhinweise auf der Übersicht neutral formuliert.
-- [ ] Offen: Datenschutzhinweis, siehe „Offene Entscheidungen“.
+- [x] Datenschutzhinweis am Ende der Übersicht (`00-start.md`). Er enthält nur Aussagen, die `tests/smoke-reset.js` prüft: keine Cookies, nur Anfragen an den eigenen Server (nur GET, ohne Parameter), ein Eintrag im lokalen Speicher mit Kennungen, externe Links im neuen Tab. Was GitHub als Hoster verarbeitet, steht nicht im Hinweis; er verweist auf GitHubs Datenschutzerklärung. Wer den Hinweis erweitert, ergänzt den passenden Test.
 
 ### Schritt D: inhaltliche Restpunkte
 
@@ -116,4 +115,4 @@ npm install && npx playwright install chromium
 node tests/smoke-reset.js               # Browsertest, Erwartung: "Alles in Ordnung."
 ```
 
-Der Rauchtest prüft 14 Blätter, 19 Übungen, 58 Aufgaben, Speichern, Neuladen, Zurücksetzen je Blatt und gesamt, eine gelöste Reihenfolge-Übung und die Breite 400 px.
+Der Rauchtest prüft 14 Blätter, 19 Übungen, 58 Aufgaben, Speichern, Neuladen, Zurücksetzen je Blatt und gesamt, eine gelöste Reihenfolge-Übung, die Breite 400 px und die Datenschutz-Aussagen. Mit einer Adresse als Argument läuft er gegen die veröffentlichte Seite: `node tests/smoke-reset.js https://rpietzsch.github.io/tc6/`.

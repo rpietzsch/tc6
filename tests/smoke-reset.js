@@ -1,18 +1,23 @@
 #!/usr/bin/env node
 /* Rauchtest im Browser (Playwright): Seite lädt, Zahl der Blätter, Übungen und Aufgaben stimmt,
    Fortschritt wird gespeichert, bleibt nach dem Neuladen und lässt sich je Blatt und gesamt zurücksetzen.
+   Prüft außerdem, was die Seite über den Datenschutz verspricht (siehe Abschnitt „Datenschutz“ in portal/kapitel/00-start.md):
+   keine Anfragen an fremde Server, keine Cookies, nur ein Eintrag im lokalen Speicher mit Kennungen.
    Aufruf: node tests/smoke-reset.js [ordner]   (Standard: portal)
+           node tests/smoke-reset.js https://rpietzsch.github.io/tc6/   (gegen die veröffentlichte Seite)
    Einmalig vorher: npm install && npx playwright install chromium */
 'use strict';
 const {chromium} = require('playwright');
 const http = require('http'), fs = require('fs'), path = require('path');
 
-const root = path.resolve(process.argv[2] || path.join(__dirname, '..', 'portal'));
+const arg = process.argv[2] || '';
+const live = /^https?:\/\//.test(arg);
+const root = path.resolve(live ? '.' : arg || path.join(__dirname, '..', 'portal'));
 const TYPEN = {'.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.md': 'text/markdown; charset=utf-8', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.txt': 'text/plain; charset=utf-8'};
 
 // Unter dem Unterpfad /tc6/ ausliefern wie GitHub Pages; so fallen falsch aufgelöste relative Adressen auf.
 const PREFIX = '/tc6/';
-const server = http.createServer((q, s) => {
+const server = live ? null : http.createServer((q, s) => {
   const roh = decodeURIComponent(q.url.split('?')[0]);
   if (!roh.startsWith(PREFIX)) { s.writeHead(404); s.end(); return; }
   const pfad = roh.slice(PREFIX.length - 1);
@@ -27,12 +32,13 @@ const server = http.createServer((q, s) => {
 let fehlgeschlagen = 0;
 const pruefe = (name, ok, info) => { if (!ok) fehlgeschlagen++; console.log((ok ? 'ok     ' : 'FEHLER ') + name + (info !== undefined ? ' | ' + info : '')); };
 
-server.listen(0, '127.0.0.1', async () => {
-  const url = 'http://127.0.0.1:' + server.address().port + PREFIX;
+const lauf = async (url) => {
   const b = await chromium.launch();
   const errs = [];
   try {
     const c = await b.newContext({viewport: {width: 1100, height: 800}});
+    const anfragen = [];
+    c.on('request', r => { if (/^https?:/.test(r.url())) anfragen.push({url: r.url(), methode: r.method()}); });
     const p = await c.newPage();
     p.on('pageerror', e => errs.push(e.message));
     p.on('console', m => { if (m.type() === 'error') errs.push(m.text()); });
@@ -65,6 +71,22 @@ server.listen(0, '127.0.0.1', async () => {
     pruefe('drei Haken', (await text()) === '3 von 77 Aufgaben', await text());
     await p.reload(); await p.waitForSelector('section.blatt:not([hidden])');
     pruefe('nach Neuladen gespeichert', (await text()) === '3 von 77 Aufgaben' && await p.isChecked('#text-t0-0'), await text());
+
+    // Was im Browser liegt: genau ein Eintrag im lokalen Speicher, nur Kennungen mit dem Wert 1
+    const speicher = () => p.evaluate(async () => ({
+      lokal: Object.keys(localStorage),
+      wert: localStorage.getItem('tc-werkstatt-6'),
+      sitzung: sessionStorage.length,
+      cookie: document.cookie,
+      idb: indexedDB.databases ? (await indexedDB.databases()).length : 0,
+      sw: navigator.serviceWorker ? (await navigator.serviceWorker.getRegistrations()).length : 0,
+      caches: window.caches ? (await caches.keys()).length : 0
+    }));
+    const sp = await speicher();
+    let obj = null; try { obj = JSON.parse(sp.wert); } catch (e) {}
+    pruefe('lokaler Speicher: nur der Eintrag tc-werkstatt-6', JSON.stringify(sp.lokal) === '["tc-werkstatt-6"]', JSON.stringify(sp.lokal));
+    pruefe('Eintrag enthält nur Kennungen mit Wert 1', !!obj && Object.keys(obj).length === 3 && Object.values(obj).every(v => v === 1) && Object.keys(obj).every(k => /^[a-z0-9-]+$/.test(k)), sp.wert);
+    pruefe('kein Sitzungsspeicher, keine IndexedDB, kein Service Worker, kein Cache', sp.sitzung === 0 && sp.idb === 0 && sp.sw === 0 && sp.caches === 0, JSON.stringify(sp));
 
     await p.click('#reset button');
     pruefe('Rückfrage in der Seite', (await p.textContent('#reset')).includes('Wirklich'), await T());
@@ -102,11 +124,29 @@ server.listen(0, '127.0.0.1', async () => {
       const w = await p.evaluate(() => document.documentElement.scrollWidth);
       pruefe('400 px ohne Querscrollen: ' + id, w <= 400, w);
     }
+
+    // Alle Blätter besuchen und bedienen, danach prüfen, wohin die Seite Anfragen geschickt hat
+    await p.setViewportSize({width: 1100, height: 800});
+    const alleIds = await p.$$eval('section.blatt', ss => ss.map(x => x.id));
+    for (const id of alleIds) { await p.goto(url + '#' + id); await p.waitForTimeout(60); }
+    await p.goto(url + '#morsen'); await p.fill('#morse-in', 'Test 123');
+    await p.goto(url + '#prog'); await p.click('#mc-start'); await p.click('#mc-a');
+    await p.goto(url + '#eva'); await p.click('.ex[data-ex="eva-quiz"] .opt');
+    await p.waitForTimeout(200);
+    const herkunft = new URL(url).origin;
+    const fremd = anfragen.filter(a => new URL(a.url).origin !== herkunft);
+    pruefe('alle Anfragen gehen an den eigenen Server (' + anfragen.length + ' Anfragen)', fremd.length === 0, JSON.stringify(fremd.map(a => a.url)));
+    pruefe('nur GET-Anfragen ohne Parameter', anfragen.every(a => a.methode === 'GET' && !new URL(a.url).search), JSON.stringify(anfragen.filter(a => a.methode !== 'GET' || new URL(a.url).search)));
+    const extern = await p.$$eval('a[href^="http"]', as => as.filter(a => a.target !== '_blank').map(a => a.href));
+    pruefe('externe Links öffnen im neuen Tab', extern.length === 0, JSON.stringify(extern));
+    pruefe('keine Cookies', (await c.cookies()).length === 0 && (await speicher()).cookie === '', JSON.stringify(await c.cookies()));
   } catch (e) {
     fehlgeschlagen++; console.log('FEHLER Ausnahme | ' + e.message);
   }
   pruefe('keine Konsolenfehler', errs.length === 0, JSON.stringify(errs));
-  await b.close(); server.close();
+  await b.close(); if (server) server.close();
   console.log(fehlgeschlagen ? '\n' + fehlgeschlagen + ' Prüfung(en) fehlgeschlagen.' : '\nAlles in Ordnung.');
   process.exit(fehlgeschlagen ? 1 : 0);
-});
+};
+if (live) lauf(arg.replace(/\/?$/, '/'));
+else server.listen(0, '127.0.0.1', () => lauf('http://127.0.0.1:' + server.address().port + PREFIX));

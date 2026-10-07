@@ -158,6 +158,12 @@ Ausgelesen aus `portal/kapitel/*.md`. Neue Links hier eintragen; `node tests/val
 | Wikimedia Commons | https://commons.wikimedia.org/wiki/Hauptseite | abgerufen, ok |
 | Erfindung | https://de.wikipedia.org/wiki/Erfindung | abgerufen, ok |
 
+## Datenschutz (`#start`)
+
+| Titel | URL | Prüfung |
+|---|---|---|
+| Datenschutzerklärung von GitHub | https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement | abgerufen, ok (2026-10-07; erwähnt GitHub Pages nicht ausdrücklich) |
+
 ## Legende
 
 - **abgerufen, ok**: am 2026-10-06 per WebFetch geöffnet, Inhalt passte.

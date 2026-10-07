@@ -50,3 +50,14 @@ Die sächsischen Lehrpläne folgen seit 2019 dem Rahmen „Kompetenzen in der di
 | 6 Analysieren und Reflektieren | [Quellen prüfen](#web), [Mediengebrauch reflektieren](#schulnetz), [Nachrichten übertragen](#morsen) |
 
 Schwächer abgedeckt sind Werbung, Online-Spiele, Streaming und Urheberrecht, weil der Lehrplan sie im Fach TC nicht verlangt. Dafür sind auf den Blättern die passenden Lernmodule des Internet-ABC verlinkt. Die staatlichen Selbstlernmodule arbeiten mit Lernvideos, dieses Portal mit Text, Übungen und Praxisaufgaben. Wer Videos ergänzen möchte, findet sie in den Mediatheken oben.
+
+## Datenschutz
+
+- Die Seite setzt keine Cookies.
+- Schriften, Skripte und Bilder liegen auf demselben Server wie die Seite. Beim Öffnen und Benutzen gehen keine Anfragen an andere Server.
+- Was du in Übungen oder im Morse-Übersetzer eingibst, schickt die Seite nirgendwohin.
+- Dein Lernfortschritt liegt nur in deinem Browser, als ein Eintrag im lokalen Speicher. Er enthält nur die Kennungen der erledigten Übungen und Aufgaben, keinen Namen. Mit „Fortschritt zurücksetzen“ unter den Blättern löschst du ihn.
+- Ausgeliefert wird die Seite über GitHub Pages. Betreiber dieses Dienstes ist GitHub: [Datenschutzerklärung von GitHub](https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement).
+- Links zu anderen Seiten öffnen sich in einem neuen Tab. Dort gelten die Regeln der jeweiligen Seite.
+
+Die Aussagen zu Cookies, Anfragen und lokalem Speicher prüft der Test `tests/smoke-reset.js` im Repository.
