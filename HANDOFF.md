@@ -101,6 +101,20 @@ Keine. (Zurücksetzen gibt es je Blatt und gesamt; eine Gruppen-Variante ist nic
 - [ ] Schulinternen Stoffverteilungsplan erfragen; welche Teile die Schule in Klasse 6 tatsächlich behandelt, ist unbekannt.
 - [ ] Optional: Lernvideos ergänzen (MeSax-Mediathek, Planet Schule); bisher keine eingebaut, weil keine einzeln geprüft wurden.
 
+### Schritt E: Bilder und Illustrationen ergänzen
+
+Auftrag des Nutzers: passende Bilder und Illustrationen einbauen (zum Beispiel EVA, Maus, Tastatur, Arbeitsspeicher, Festplatte). Die Schüler sollen die Dinge gesehen haben, zumal viel „historische“ Hardware in modernen Geräten nicht mehr sichtbar ist (Festplatte, Diskette, Kabelmaus, Tastatur-Aufbau).
+
+Regeln:
+
+- Nur offen lizenziertes Material (zum Beispiel Wikipedia/Wikimedia Commons: gemeinfrei, CC0, CC BY, CC BY-SA) oder selbst erzeugte Grafiken (SVG, gerne im Stil von `bilder/eva.svg`). Keine Bilder von Herstellerseiten oder aus Bildersuchen.
+- Die Bilddatei liegt im Repository (`portal/bilder/`), kein Einbinden von fremden Servern (der Datenschutzhinweis verspricht keine Anfragen an Dritte).
+- Je Bild ein Nachweis mit Titel, Urheber, Lizenz mit Version, Quell-Adresse und Datum der Prüfung, zum Beispiel in `docs/bilder-nachweis.md`. Bei CC BY und CC BY-SA muss die Namensnennung auf der Seite stehen (Bildunterschrift oder Quellenzeile am Blatt). Das Prüfskript sollte melden, wenn ein Bild keinen Eintrag hat.
+- Vor dem Einbau jede Commons-Seite öffnen und Lizenz und Urheber lesen; die Angaben auf Commons nicht aus dem Gedächtnis übernehmen. Bei Zweifeln das Bild weglassen.
+- Bilder klein halten (SVG oder komprimiertes WebP/JPEG, Breite höchstens etwa 800 px), Alternativtext jeweils schreiben, im Dunkelmodus lesbar (Fotos auf hellem Grund eventuell mit Rahmen).
+- Markdown: `![Alternativtext](../bilder/datei.jpg "Bildunterschrift mit Urheber und Lizenz")`; der Loader macht daraus eine Abbildung.
+- Vorschlag für Stellen: `eva` (Eingabe-, Ausgabegeräte, Platine, Prozessor, Arbeitsspeicher), `hardsoft` (Aufbau eines PCs, Oberfläche), `dateien` (Speichermedien von Diskette bis SSD), `mini` (Calliope mini oder micro:bit), `morsen` (Morsetaste, Flügeltelegraf).
+
 ## Bekannte Grenzen
 
 - Fortschritt gilt je Browser und Gerät; kein Abgleich zwischen Geräten.
