@@ -204,7 +204,8 @@ function baueBlatt(datei, text, url, spaeter) {
   const p = KapitelParser.parse(text);
   const m = p.meta, name = 'kapitel/' + datei;
   const sec = h('section', {class: 'blatt', id: m.id || datei, hidden: true, 'data-g': m.gruppe || '', 'data-t': m.kurztitel || m.titel || datei, 'data-d': m.dauer || ''});
-  const body = h('div'); body.innerHTML = marked.parse(p.markdown, {gfm: true});
+  const tpl = document.createElement('template'); tpl.innerHTML = marked.parse(p.markdown, {gfm: true}); // inaktiv: Bilder laden erst, wenn sie eingehängt sind
+  const body = tpl.content;
   nachbearbeiten(body, url, spaeter);
   if (m.lehrplan) sec.append(h('p', {class: 'eye'}, m.lehrplan));
   sec.append(h('h1', null, m.titel || datei));

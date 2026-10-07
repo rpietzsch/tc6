@@ -10,8 +10,12 @@ const http = require('http'), fs = require('fs'), path = require('path');
 const root = path.resolve(process.argv[2] || path.join(__dirname, '..', 'portal'));
 const TYPEN = {'.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json', '.md': 'text/markdown; charset=utf-8', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.txt': 'text/plain; charset=utf-8'};
 
+// Unter dem Unterpfad /tc6/ ausliefern wie GitHub Pages; so fallen falsch aufgelöste relative Adressen auf.
+const PREFIX = '/tc6/';
 const server = http.createServer((q, s) => {
-  const pfad = decodeURIComponent(q.url.split('?')[0]);
+  const roh = decodeURIComponent(q.url.split('?')[0]);
+  if (!roh.startsWith(PREFIX)) { s.writeHead(404); s.end(); return; }
+  const pfad = roh.slice(PREFIX.length - 1);
   const f = path.join(root, pfad.endsWith('/') ? pfad + 'index.html' : pfad);
   if (!f.startsWith(root)) { s.writeHead(403); s.end(); return; }
   fs.readFile(f, (e, d) => {
@@ -24,7 +28,7 @@ let fehlgeschlagen = 0;
 const pruefe = (name, ok, info) => { if (!ok) fehlgeschlagen++; console.log((ok ? 'ok     ' : 'FEHLER ') + name + (info !== undefined ? ' | ' + info : '')); };
 
 server.listen(0, '127.0.0.1', async () => {
-  const url = 'http://127.0.0.1:' + server.address().port + '/';
+  const url = 'http://127.0.0.1:' + server.address().port + PREFIX;
   const b = await chromium.launch();
   const errs = [];
   try {
@@ -33,6 +37,7 @@ server.listen(0, '127.0.0.1', async () => {
     p.on('pageerror', e => errs.push(e.message));
     p.on('console', m => { if (m.type() === 'error') errs.push(m.text()); });
     p.on('requestfailed', r => errs.push('Anfrage fehlgeschlagen: ' + r.url()));
+    p.on('response', r => { if (r.status() >= 400) errs.push('HTTP ' + r.status() + ': ' + r.url()); });
     const T = async () => (await p.textContent('#ptext')) + ' | ' + (await p.textContent('#reset')).slice(0, 90);
     const text = async () => p.textContent('#ptext');
 
