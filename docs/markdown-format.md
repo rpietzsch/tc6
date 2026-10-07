@@ -93,7 +93,8 @@ Zwischen zwei Zeilen `---` stehen Zeilen der Form `schlüssel: wert`. Es ist kei
 | `## Überschrift` | Zwischenüberschrift (`#` nicht verwenden, die Überschrift steht in `titel`) |
 | `> **Merke:** Text` | Merkkasten; das fette Wort ist die Titelzeile, ein Doppelpunkt darin wird entfernt |
 | Tabelle mit `\|` | Tabelle; eine Spalte mit `---:` ist rechtsbündig (für Zahlen) |
-| `![Beschreibung](pfad "Unterschrift")` | Abbildung; `.svg`-Dateien werden in die Seite eingebettet, damit Farben und Dunkelmodus gelten |
+| `![Beschreibung](pfad "Unterschrift")` | Abbildung, siehe nächste Zeile; `.svg`-Dateien werden in die Seite eingebettet, damit Farben und Dunkelmodus gelten |
+| `![Alt](../bilder/x.webp "Unterschrift")` | Bild; allein im Absatz eine Abbildung, mehrere Zeilen hintereinander eine Bildergruppe. Alternativtext und Unterschrift sind Pflicht. Urheber und Lizenz kommen aus `portal/bilder/nachweis.json` und erscheinen automatisch unter dem Bild und im „Bildnachweis“ am Blattende |
 | `` `Strg + S` `` | Tastenkürzel und Dateinamen in Schreibmaschinenschrift |
 | `<mark>Wenn</mark>` | gelbe Hervorhebung |
 | `- [ ] Aufgabe {#id}` | abhakbare Praxisaufgabe; die ID am Zeilenende ist Pflicht |

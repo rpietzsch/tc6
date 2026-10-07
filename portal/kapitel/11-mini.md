@@ -23,6 +23,9 @@ In Heizung, Waschmaschine und Schrittzähler steckt ein winziger Computer auf ei
 
 Schulen nutzen als Einplatinenrechner oft den Calliope mini oder den micro:bit. Beide haben Taster, eine Anzeige aus 25 Leuchtdioden und Sensoren für Lage, Licht und Temperatur.
 
+![Calliope mini mit Leuchtdioden-Anzeige](../bilder/calliope-mini.webp "Der Calliope mini mit der Anzeige aus 25 Leuchtdioden in der Mitte.")
+![Rückseite eines micro:bit (Version 2)](../bilder/microbit-v2.webp "Der micro:bit (Version 2) von hinten mit seinen Chips.")
+
 ```zuordnen
 id: sens-sort
 titel: Übung: Sensor oder Aktor?

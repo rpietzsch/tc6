@@ -111,6 +111,28 @@ async function holen(url) {
   return r;
 }
 
+function bildFigur(img, kapitelUrl, spaeter, benutzt) {
+  const url = new URL(img.getAttribute('src'), kapitelUrl), name = url.pathname.split('/').pop(), e = nachweis[name];
+  const fig = h('figure'), unter = img.getAttribute('title') || '';
+  if (!e) console.warn('Kein Eintrag in bilder/nachweis.json: ' + name);
+  benutzt.push(name);
+  if (/\.svg$/i.test(url.pathname)) {
+    spaeter.push(holen(url).then(r => r.text()).then(t => {
+      const svg = document.importNode(new DOMParser().parseFromString(t, 'image/svg+xml').documentElement, true);
+      $$('style', svg).forEach(x => x.remove());
+      if (!svg.getAttribute('role')) svg.setAttribute('role', 'img');
+      if (!svg.getAttribute('aria-label')) svg.setAttribute('aria-label', img.alt);
+      fig.prepend(svg);
+    }).catch(err => { console.error(err); fig.prepend(h('div', {class: 'fb bad'}, 'Bild fehlt: ' + url.pathname)); }));
+  } else {
+    const b = h('img', {src: url.href, alt: img.alt, loading: 'lazy', decoding: 'async', width: e && e.breite, height: e && e.hoehe});
+    fig.append(b);
+  }
+  const credit = e && !e.eigen ? ' Bild: ' + e.urheber + ', ' + e.lizenzKurz + '.' : '';
+  if (unter || credit) fig.append(h('figcaption', null, (unter + credit).trim()));
+  return fig;
+}
+
 /* Wandelt das vom Markdown-Parser erzeugte HTML in die Bausteine der Seite um. */
 function nachbearbeiten(body, kapitelUrl, spaeter) {
   // Einstieg: erster Absatz
@@ -174,24 +196,25 @@ function nachbearbeiten(body, kapitelUrl, spaeter) {
     }
   });
 
-  // Bilder: eigener Absatz = Abbildung; SVG werden eingebettet, damit Seitenfarben und Dunkelmodus gelten
+  // Bilder: ein eigener Absatz mit Bildern = Abbildung (ein Bild) oder Bildergruppe (mehrere Bilder, Zeilen ohne Leerzeile).
+  // SVG werden eingebettet, damit Seitenfarben und Dunkelmodus gelten. Urheber und Lizenz kommen aus bilder/nachweis.json.
+  const benutzt = [];
   $$('p', body).forEach(p => {
-    const img = p.children.length === 1 && p.firstElementChild.tagName === 'IMG' && !p.textContent.trim() ? p.firstElementChild : null;
-    if (!img) return;
-    const url = new URL(img.getAttribute('src'), kapitelUrl), fig = h('figure', {class: 'breit'});
-    const unter = img.getAttribute('title');
-    p.replaceWith(fig);
-    if (/\.svg$/i.test(url.pathname)) {
-      spaeter.push(holen(url).then(r => r.text()).then(t => {
-        const svg = document.importNode(new DOMParser().parseFromString(t, 'image/svg+xml').documentElement, true);
-        $$('style', svg).forEach(s => s.remove());
-        if (!svg.getAttribute('role')) svg.setAttribute('role', 'img');
-        if (!svg.getAttribute('aria-label')) svg.setAttribute('aria-label', img.alt);
-        fig.prepend(svg);
-      }).catch(e => { console.error(e); fig.prepend(h('div', {class: 'fb bad'}, 'Bild fehlt: ' + url.pathname)); }));
-    } else { img.src = url; fig.prepend(img); }
-    if (unter) { img.removeAttribute('title'); fig.append(h('figcaption', null, unter)); }
+    const imgs = [...p.children].filter(c => c.tagName === 'IMG');
+    const nurBilder = imgs.length && [...p.childNodes].every(n => (n.nodeType === 1 && (n.tagName === 'IMG' || n.tagName === 'BR')) || (n.nodeType === 3 && !n.textContent.trim()));
+    if (!nurBilder) return;
+    const figs = imgs.map(img => bildFigur(img, kapitelUrl, spaeter, benutzt));
+    if (figs.length === 1) { figs[0].classList.add('breit'); p.replaceWith(figs[0]); }
+    else { const g = h('div', {class: 'sinn breit'}); g.append(...figs); p.replaceWith(g); }
   });
+  const fremd = [...new Set(benutzt)].filter(n => nachweis[n] && !nachweis[n].eigen);
+  if (fremd.length) {
+    const ext = (href, text) => h('a', {href}, text);
+    body.append(h('h2', null, 'Bildnachweis'), h('ul', {class: 'nachweis'}, ...fremd.map(n => {
+      const e = nachweis[n];
+      return h('li', null, e.titel + ': ' + e.urheber + ', ', e.lizenzUrl ? ext(e.lizenzUrl, e.lizenz) : e.lizenz, ', ', ext(e.quelle, 'Wikimedia Commons'), '; ' + e.bearbeitung + '.');
+    })));
+  }
 
   // Externe Links in neuem Tab
   $$('a[href^="http"]', body).forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
@@ -223,11 +246,12 @@ function baueBlatt(datei, text, url, spaeter) {
   return sec;
 }
 
-let blaetter = [], aktuell = 0;
+let blaetter = [], aktuell = 0, nachweis = {};
 
 async function ladeKapitel() {
   const basis = new URL('kapitel/', document.baseURI);
   const liste = await (await holen(new URL('index.json', basis))).json();
+  nachweis = await holen(new URL('../bilder/nachweis.json', basis)).then(r => r.json()).catch(err => { console.error(err); return {}; });
   const spaeter = [];
   const roh = await Promise.all(liste.map(async f => { const u = new URL(f, basis); return {f, u, text: await (await holen(u)).text()}; }));
   const secs = roh.map(k => {

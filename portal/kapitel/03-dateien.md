@@ -42,6 +42,17 @@ Dokumente
 - **Speichern unter** legt eine neue Datei an. Du wählst Ordner und Namen.
 - **Öffnen** holt eine gespeicherte Datei zurück ins Programm.
 
+## Wo deine Dateien liegen
+
+Dateien liegen auf einem Speichermedium. Früher waren das vor allem Disketten, heute sind es Festplatten, SSDs, USB-Sticks und Speicherkarten.
+
+![Disketten in drei Größen](../bilder/diskette.webp "Disketten. Auf eine 3,5-Zoll-Diskette passten 1,44 Megabyte.")
+![Eine CD von oben](../bilder/cd.webp "Auf eine CD passen etwa 700 Megabyte.")
+![Geöffnete Festplatte](../bilder/festplatte-offen.webp "Eine geöffnete Festplatte: Die Scheibe dreht sich, ein Arm mit Lesekopf fährt darüber.")
+![M.2-SSD](../bilder/ssd-m2.webp "Eine SSD im M.2-Format. Sie speichert in Chips, ohne bewegliche Teile.")
+![USB-Stick](../bilder/usb-stick.webp "Ein USB-Stick.")
+![SD-Karte](../bilder/sd-karte.webp "Eine SD-Karte.")
+
 ## Daten austauschen
 
 Dateien wandern auf mehreren Wegen von einem Gerät zum anderen: auf einem USB-Stick, über einen gemeinsamen Ordner im Schulnetzwerk, über die Lernplattform oder als Anhang einer E-Mail.

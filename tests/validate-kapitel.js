@@ -83,6 +83,48 @@ for (const k of kapitel) {
   });
 }
 
+// Bilder: Datei vorhanden, Alternativtext, Eintrag mit Urheber und Lizenz in portal/bilder/nachweis.json
+const BILDER = path.join(PORTAL, 'bilder'), nachweisDatei = path.join(BILDER, 'nachweis.json');
+const nachweis = fs.existsSync(nachweisDatei) ? (liesJson(nachweisDatei) || {}) : {};
+const ERLAUBTE_LIZENZ = /^(gemeinfrei|CC0|CC BY(-SA)? [1-4]\.\d|MIT)/;
+const verwendet = new Set();
+for (const k of kapitel) {
+  const zeilen = k.text.split('\n'); let inCode = false;
+  zeilen.forEach((L, i) => {
+    if (/^`{3,}/.test(L)) { inCode = !inCode; return; }
+    if (inCode) return;
+    for (const m of L.matchAll(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g)) {
+      const [, alt, ziel, titel] = m;
+      if (!alt.trim()) meld(k.datei, i + 1, 'Das Bild "' + ziel + '" braucht einen Alternativtext in den eckigen Klammern.');
+      if (!titel || !titel.trim()) meld(k.datei, i + 1, 'Das Bild "' + ziel + '" braucht eine Bildunterschrift in Anführungszeichen hinter der Adresse.');
+      const f = path.resolve(path.dirname(k.datei), decodeURI(ziel));
+      if (path.dirname(f) !== BILDER) { meld(k.datei, i + 1, 'Bilder gehören nach portal/bilder/: ' + ziel); continue; }
+      const name = path.basename(f); verwendet.add(name);
+      if (!nachweis[name]) meld(k.datei, i + 1, 'Das Bild "' + name + '" hat keinen Eintrag in portal/bilder/nachweis.json (Urheber, Lizenz, Quelle).');
+    }
+  });
+}
+const dateienImOrdner = fs.readdirSync(BILDER).filter(f => f !== 'nachweis.json');
+for (const f of dateienImOrdner) {
+  if (!nachweis[f]) meld(nachweisDatei, 1, 'Die Datei "' + f + '" hat keinen Eintrag im Nachweis.');
+  else if (!verwendet.has(f)) warn.push('portal/bilder/' + f + ' wird in keinem Kapitel verwendet.');
+  const kb = fs.statSync(path.join(BILDER, f)).size / 1024;
+  if (kb > 200) warn.push('portal/bilder/' + f + ' ist ' + Math.round(kb) + ' KB groß; Ziel: unter 200 KB.');
+}
+for (const [name, e] of Object.entries(nachweis)) {
+  const m = t => meld(nachweisDatei, 1, name + ': ' + t);
+  if (!dateienImOrdner.includes(name)) { m('Es gibt die Datei nicht.'); continue; }
+  for (const f of ['titel', 'urheber', 'lizenz', 'lizenzKurz', 'geprueft']) if (!e[f] || typeof e[f] !== 'string') m('Feld "' + f + '" fehlt.');
+  if (e.geprueft && !/^\d{4}-\d\d-\d\d$/.test(e.geprueft)) m('"geprueft" muss ein Datum JJJJ-MM-TT sein.');
+  if (e.lizenzKurz && !ERLAUBTE_LIZENZ.test(e.lizenzKurz)) m('Die Lizenz "' + e.lizenzKurz + '" ist nicht erlaubt (gemeinfrei, CC0, CC BY, CC BY-SA, bei eigenen Grafiken MIT).');
+  if (!e.eigen) {
+    if (!/^https:\/\//.test(e.quelle || '')) m('Feld "quelle" muss eine https-Adresse der Quelle sein.');
+    if (!e.bearbeitung) m('Feld "bearbeitung" fehlt (zum Beispiel "verkleinert").');
+    if (e.lizenzKurz && !/^(gemeinfrei|CC0)/.test(e.lizenzKurz) && !/^https:\/\//.test(e.lizenzUrl || '')) m('Feld "lizenzUrl" fehlt (Adresse des Lizenztexts).');
+    if (!/^[1-9]\d*$/.test(String(e.breite)) || !/^[1-9]\d*$/.test(String(e.hoehe))) m('Felder "breite" und "hoehe" (in Pixeln) fehlen.');
+  }
+}
+
 // IDs, die schon einmal ausgeliefert wurden, dürfen nicht verschwinden (Lernfortschritt hängt daran)
 const stabil = path.join(__dirname, 'ids-stabil.txt');
 if (fs.existsSync(stabil)) {

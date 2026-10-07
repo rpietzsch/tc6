@@ -49,4 +49,4 @@ In Arbeit. Stand, Entscheidungen und Plan stehen in [`HANDOFF.md`](HANDOFF.md).
 
 ## Lizenz
 
-[MIT](LICENSE). Die Schriften unter `portal/assets/fonts/` stehen unter der SIL Open Font License, `marked` unter der MIT-Lizenz (siehe `portal/assets/vendor/`). Der Lehrplanauszug in `docs/lehrplan-auszug.md` stammt aus einer amtlichen Quelle und ist davon ausgenommen.
+[MIT](LICENSE). Die Schriften unter `portal/assets/fonts/` stehen unter der SIL Open Font License, `marked` unter der MIT-Lizenz (siehe `portal/assets/vendor/`). Die Bilder unter `portal/bilder/` stammen überwiegend von Wikimedia Commons und stehen unter den Lizenzen, die in `portal/bilder/nachweis.json` und im „Bildnachweis“ der Blätter genannt sind; eigene Zeichnungen stehen unter MIT. Der Lehrplanauszug in `docs/lehrplan-auszug.md` stammt aus einer amtlichen Quelle und ist davon ausgenommen.

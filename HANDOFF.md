@@ -101,19 +101,27 @@ Keine. (Zurücksetzen gibt es je Blatt und gesamt; eine Gruppen-Variante ist nic
 - [ ] Schulinternen Stoffverteilungsplan erfragen; welche Teile die Schule in Klasse 6 tatsächlich behandelt, ist unbekannt.
 - [ ] Optional: Lernvideos ergänzen (MeSax-Mediathek, Planet Schule); bisher keine eingebaut, weil keine einzeln geprüft wurden.
 
-### Schritt E: Bilder und Illustrationen ergänzen
+### Schritt E: Bilder und Illustrationen (erledigt, ausbaufähig)
 
-Auftrag des Nutzers: passende Bilder und Illustrationen einbauen (zum Beispiel EVA, Maus, Tastatur, Arbeitsspeicher, Festplatte). Die Schüler sollen die Dinge gesehen haben, zumal viel „historische“ Hardware in modernen Geräten nicht mehr sichtbar ist (Festplatte, Diskette, Kabelmaus, Tastatur-Aufbau).
+Auftrag des Nutzers: passende Bilder und Illustrationen, damit die Schüler die Dinge gesehen haben, zumal viel „historische“ Hardware in modernen Geräten nicht mehr sichtbar ist. Nur offen lizenziertes Material (Wikimedia Commons) oder selbst erzeugte Grafiken.
 
-Regeln:
+Umgesetzt (18 Bilder, rund 750 KB, alle lokal in `portal/bilder/`):
 
-- Nur offen lizenziertes Material (zum Beispiel Wikipedia/Wikimedia Commons: gemeinfrei, CC0, CC BY, CC BY-SA) oder selbst erzeugte Grafiken (SVG, gerne im Stil von `bilder/eva.svg`). Keine Bilder von Herstellerseiten oder aus Bildersuchen.
-- Die Bilddatei liegt im Repository (`portal/bilder/`), kein Einbinden von fremden Servern (der Datenschutzhinweis verspricht keine Anfragen an Dritte).
-- Je Bild ein Nachweis mit Titel, Urheber, Lizenz mit Version, Quell-Adresse und Datum der Prüfung, zum Beispiel in `docs/bilder-nachweis.md`. Bei CC BY und CC BY-SA muss die Namensnennung auf der Seite stehen (Bildunterschrift oder Quellenzeile am Blatt). Das Prüfskript sollte melden, wenn ein Bild keinen Eintrag hat.
-- Vor dem Einbau jede Commons-Seite öffnen und Lizenz und Urheber lesen; die Angaben auf Commons nicht aus dem Gedächtnis übernehmen. Bei Zweifeln das Bild weglassen.
-- Bilder klein halten (SVG oder komprimiertes WebP/JPEG, Breite höchstens etwa 800 px), Alternativtext jeweils schreiben, im Dunkelmodus lesbar (Fotos auf hellem Grund eventuell mit Rahmen).
-- Markdown: `![Alternativtext](../bilder/datei.jpg "Bildunterschrift mit Urheber und Lizenz")`; der Loader macht daraus eine Abbildung.
-- Vorschlag für Stellen: `eva` (Eingabe-, Ausgabegeräte, Platine, Prozessor, Arbeitsspeicher), `hardsoft` (Aufbau eines PCs, Oberfläche), `dateien` (Speichermedien von Diskette bis SSD), `mini` (Calliope mini oder micro:bit), `morsen` (Morsetaste, Flügeltelegraf).
+- `eva`: Explosionszeichnung eines PC mit elf nummerierten Teilen und Legende; Maus von außen und innen, alte Tastatur; Hauptplatine, Prozessor heute und früher, Arbeitsspeicher.
+- `hardsoft`: eigene Zeichnung der Bedienelemente (Fenster, Menü, Symbol, Schaltfläche) als SVG.
+- `dateien`: Speichermedien von der Diskette über CD, Festplatte (geöffnet), SSD bis USB-Stick und SD-Karte.
+- `mini`: Calliope mini und micro:bit. `morsen`: Morsetaste und Nachbau eines Chappe-Telegrafen.
+
+Wie es funktioniert:
+
+- Markdown: `![Alternativtext](../bilder/datei.webp "Bildunterschrift")`. Ein Bild allein im Absatz wird zur Abbildung, mehrere Bilder in aufeinanderfolgenden Zeilen zu einer Bildergruppe (`.sinn`). Ein SVG wird in die Seite eingebettet (Farben, Dunkelmodus), alles andere ist `<img loading="lazy">` mit Breite und Höhe.
+- `portal/bilder/nachweis.json` ist die Quelle für Urheber und Lizenz: Titel, Urheber, Lizenz mit Version und Link auf den Lizenztext, Commons-Seite, Bearbeitung, Prüfdatum, Maße. Der Loader hängt an jede Bildunterschrift „Bild: Urheber, Lizenz“ und erzeugt am Ende des Blatts einen Abschnitt „Bildnachweis“ mit Links. Eigene Grafiken haben `"eigen": true`.
+- `tests/validate-kapitel.js` prüft: Datei vorhanden, Alternativtext und Bildunterschrift, Eintrag im Nachweis, erlaubte Lizenz (gemeinfrei, CC0, CC BY, CC BY-SA; eigene Grafiken MIT), Quelle als https-Adresse, Maße; meldet nicht benutzte oder zu große (über 200 KB) Dateien.
+- `tests/smoke-reset.js` prüft, dass alle Bilder laden und einen Alternativtext haben, und dass weiterhin keine Anfrage an fremde Server geht.
+- Neues Bild holen: `node tools/bild-holen.js "Dateiname auf Commons" ziel.webp 640`. Das Werkzeug liest Lizenz und Urheber über die Commons-Schnittstelle, lehnt andere Lizenzen ab, verkleinert zu WebP und schreibt den Nachweis. Vorher die Commons-Seite lesen (Personen oder Marken im Bild vermeiden) und danach Alternativtext und Bildunterschrift selbst schreiben.
+- Die Angaben zu Urheber und Lizenz stammen aus den Metadaten der Commons-Seite vom 2026-10-07. Bei Zweifeln (zum Beispiel „gemeinfrei“ bei Bildern von Fremdseiten) das Bild austauschen.
+
+Mögliche Erweiterungen: Bilder für `web`, `sicher`, `mail`, `text` und `tabelle` (zum Beispiel Beispielfenster als eigene Zeichnungen), ein Foto eines Sensors oder Aktors für `mini`, Rauchzeichen oder Zeigertelegraf für `morsen`.
 
 ## Bekannte Grenzen
 

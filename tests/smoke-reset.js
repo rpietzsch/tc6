@@ -59,7 +59,7 @@ const lauf = async (url) => {
     pruefe('14 Blätter', n.blaetter === 14, n.blaetter);
     pruefe('19 Übungen', n.uebungen === 19, n.uebungen);
     pruefe('58 Praxisaufgaben', n.aufgaben === 58, n.aufgaben);
-    pruefe('EVA-Schema eingebettet', n.svg === 1, n.svg);
+    pruefe('eigene Zeichnungen (EVA-Schema, Programmfenster) eingebettet', n.svg === 2, n.svg);
     pruefe('Bausteine (Übersicht, Morse, Minicomputer)', n.bausteine === 3, n.bausteine);
     pruefe('Schriften lokal geladen', n.schriften > 0, n.schriften);
     pruefe('Start: 0 von 77', (await text()) === '0 von 77 Aufgaben', await text());
@@ -128,7 +128,23 @@ const lauf = async (url) => {
     // Alle Blätter besuchen und bedienen, danach prüfen, wohin die Seite Anfragen geschickt hat
     await p.setViewportSize({width: 1100, height: 800});
     const alleIds = await p.$$eval('section.blatt', ss => ss.map(x => x.id));
-    for (const id of alleIds) { await p.goto(url + '#' + id); await p.waitForTimeout(60); }
+    let bilder = 0; const kaputt = [];
+    for (const id of alleIds) {
+      await p.goto(url + '#' + id); await p.waitForTimeout(60);
+      // Bilder laden erst, wenn sie ins Bild kommen; jedes anschauen und prüfen, ob es wirklich geladen ist
+      const r = await p.evaluate(async () => {
+        const fehl = []; const imgs = [...document.querySelectorAll('section:not([hidden]) img')];
+        for (const i of imgs) {
+          i.scrollIntoView();
+          await new Promise(res => { if (i.complete && i.naturalWidth) res(); else { i.addEventListener('load', res); i.addEventListener('error', res); setTimeout(res, 4000); } });
+          if (!i.naturalWidth) fehl.push(i.getAttribute('src'));
+          if (!i.alt) fehl.push('ohne Alternativtext: ' + i.getAttribute('src'));
+        }
+        return {n: imgs.length, fehl};
+      });
+      bilder += r.n; kaputt.push(...r.fehl);
+    }
+    pruefe('alle ' + bilder + ' Bilder laden, jedes mit Alternativtext', bilder > 0 && kaputt.length === 0, JSON.stringify(kaputt));
     await p.goto(url + '#morsen'); await p.fill('#morse-in', 'Test 123');
     await p.goto(url + '#prog'); await p.click('#mc-start'); await p.click('#mc-a');
     await p.goto(url + '#eva'); await p.click('.ex[data-ex="eva-quiz"] .opt');

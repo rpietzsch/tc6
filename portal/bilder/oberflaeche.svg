@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 290" role="img" aria-label="Zeichnung eines Programmfensters. Beschriftet sind das Fenster, das Menü, ein Symbol und eine Schaltfläche.">
+  <!-- Das Style-Element gilt nur, wenn die Datei allein angezeigt wird (zum Beispiel auf GitHub).
+       Im Portal wird das Bild in die Seite eingebettet; dort gelten die Farben und Klassen aus assets/app.css. -->
+  <style>
+    :root{--ink:#13243A;--paper:#EDF1F4;--mark:#FFD23F}
+    @media (prefers-color-scheme:dark){:root{--ink:#E5EEF8;--paper:#12243B}}
+    text{font-family:"IBM Plex Mono",Consolas,Menlo,monospace;fill:var(--ink)}
+    .s{fill:none;stroke:var(--ink);stroke-width:.9}
+    .pf{fill:var(--ink)}
+    .fl{fill:var(--paper);stroke:var(--ink);stroke-width:1.6}
+    .gz2{fill:var(--mark);stroke:var(--ink);stroke-width:1.2}
+  </style>
+  <defs><marker id="pf2" markerWidth="9" markerHeight="6" refX="9" refY="3" orient="auto-start-reverse"><path class="pf" d="M0,0 L9,3 L0,6z"/></marker></defs>
+  <!-- Fenster -->
+  <rect class="fl" x="10" y="10" width="340" height="270"/>
+  <rect class="gz2" x="10" y="10" width="340" height="28"/>
+  <text x="22" y="29" font-size="14" font-weight="500">Brief.odt</text>
+  <text x="296" y="29" font-size="14">–  □  ×</text>
+  <!-- Menü -->
+  <line class="s" x1="10" y1="64" x2="350" y2="64"/>
+  <text x="22" y="57" font-size="13">Datei</text><text x="76" y="57" font-size="13">Bearbeiten</text><text x="164" y="57" font-size="13">Ansicht</text>
+  <!-- Symbole -->
+  <path class="fl" d="M50,100 H80 L92,112 V150 H50Z"/><path class="s" d="M80,100 V112 H92"/>
+  <text x="71" y="170" font-size="12" text-anchor="middle">Brief.odt</text>
+  <path class="fl" d="M140,112 H158 L164,104 H190 V150 H140Z"/>
+  <text x="165" y="170" font-size="12" text-anchor="middle">Bilder</text>
+  <!-- Schaltfläche -->
+  <rect class="fl" x="230" y="226" width="96" height="34" rx="6"/>
+  <text x="278" y="248" font-size="14" font-weight="500" text-anchor="middle">Speichern</text>
+  <!-- Beschriftungen -->
+  <text x="400" y="106" font-size="15" font-weight="500">FENSTER</text>
+  <path class="s" d="M396,101 H352" marker-end="url(#pf2)"/>
+  <text x="400" y="62" font-size="15" font-weight="500">MENÜ</text>
+  <path class="s" d="M396,57 H250" marker-end="url(#pf2)"/>
+  <text x="400" y="150" font-size="15" font-weight="500">SYMBOL</text>
+  <path class="s" d="M396,145 L196,128" marker-end="url(#pf2)"/>
+  <text x="400" y="244" font-size="15" font-weight="500">SCHALTFLÄCHE</text>
+  <path class="s" d="M396,239 H328" marker-end="url(#pf2)"/>
+</svg>

@@ -26,6 +26,8 @@ Ein Computer besteht aus Teilen zum Anfassen und aus Programmen. Bedient wird er
 - **Schaltfläche:** ein Knopf zum Anklicken, zum Beispiel „Speichern“ oder „OK“.
 - **Menü:** eine Liste mit Befehlen, die aufklappt, wenn du darauf klickst.
 
+![Zeichnung eines Programmfensters mit Menü, Symbolen und einer Schaltfläche](../bilder/oberflaeche.svg "Die Bedienelemente eines Programmfensters.")
+
 ## Starten und Beenden
 
 1. **Anmelden:** In der Schule gibst du Benutzername und Passwort ein. Dein Passwort gehört nur dir.

@@ -13,3 +13,4 @@ Niederschwelliges Lernportal zum Computer-Teil des sächsischen Lehrplans Techni
 - Keine Bestätigungsdialoge über `confirm()`; Rückfragen stehen in der Seite.
 - Vor dem Veröffentlichen `node tests/validate-kapitel.js` und `node tests/smoke-reset.js` laufen lassen (`npm install && npx playwright install chromium` einmalig).
 - Nichts ohne Rückfrage veröffentlichen oder pushen: Repository ist öffentlich, Lizenz MIT, kein Impressum (siehe „Entschieden“ in `HANDOFF.md`). Neue Fremdinhalte (Texte, Bilder, Schriften) nur mit passender Lizenz und Rückfrage übernehmen.
+- Bilder nur offen lizenziert (gemeinfrei, CC0, CC BY, CC BY-SA) oder selbst gezeichnet, lokal in `portal/bilder/`, mit Eintrag in `nachweis.json`; neue Bilder mit `node tools/bild-holen.js` holen und die Commons-Seite vorher lesen.

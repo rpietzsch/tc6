@@ -34,6 +34,14 @@ npm install && npx playwright install chromium
 node tests/smoke-reset.js            # Rauchtest im Browser
 ```
 
+## Bilder
+
+- Erlaubt sind nur offen lizenzierte Bilder (gemeinfrei, CC0, CC BY, CC BY-SA), zum Beispiel von Wikimedia Commons, oder eigene Zeichnungen. Keine Bilder von Firmenseiten oder aus der Bildersuche.
+- Bilder liegen als WebP (oder SVG für eigene Zeichnungen) in `portal/bilder/`, höchstens etwa 640 px breit. Kein Einbinden von fremden Servern.
+- Jedes Bild braucht einen Eintrag in `portal/bilder/nachweis.json` mit Urheber, Lizenz und Quelle. Das Werkzeug `node tools/bild-holen.js "Dateiname auf Commons" ziel.webp` legt Datei und Eintrag an. Lies vorher die Commons-Seite des Bildes.
+- Im Kapitel: `![Alternativtext](../bilder/datei.webp "Bildunterschrift")`. Mehrere Bilder in aufeinanderfolgenden Zeilen ergeben eine Bildergruppe. Urheber und Lizenz erscheinen automatisch unter dem Bild und im „Bildnachweis“ am Ende des Blatts.
+- Vermeide erkennbare Personen und Marken im Bild.
+
 ## Schreibstil
 
 - Deutsch, Du-Anrede für das Kind, kurze Sätze.
@@ -48,4 +56,4 @@ node tests/smoke-reset.js            # Rauchtest im Browser
 - Farben nur über die CSS-Variablen in `portal/assets/app.css`. Hell- und Dunkelmodus müssen beide stimmen, und bei 400 px Breite darf nichts seitlich scrollen.
 - IDs von Übungen und Aufgaben nie ändern. Gespeicherter Lernfortschritt hängt daran.
 - Externe Links nur aufnehmen, wenn du sie geöffnet und geprüft hast. Trage sie mit Prüfstatus in [docs/links.md](docs/links.md) ein.
-- Keine Texte, Bilder oder Schriften übernehmen, deren Lizenz das nicht erlaubt. Eigene Beiträge stehen unter der [MIT-Lizenz](LICENSE) des Projekts.
+- Keine Texte, Bilder oder Schriften übernehmen, deren Lizenz das nicht erlaubt. Eigene Beiträge stehen unter der [MIT-Lizenz](LICENSE) des Projekts; die Bilder haben die Lizenzen aus `portal/bilder/nachweis.json`.

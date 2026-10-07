@@ -15,6 +15,9 @@ Menschen wollten schon immer schneller Nachrichten schicken, als ein Bote laufen
 - **Telefon:** überträgt die Stimme selbst.
 - **SMS und E-Mail:** Text wird in Zahlen umgewandelt und über Netze verschickt.
 
+![Morsetaste mit Holzsockel](../bilder/morsetaste.webp "Eine Morsetaste. Beim Drücken schließt sie den Stromkreis.")
+![Nachbau eines Chappe-Telegrafen](../bilder/chappe-telegraf.webp "Nachbau eines Chappe-Telegrafen (Flügeltelegraf) mit beweglichen Armen.")
+
 > **Merke:** Jede Nachrichtenübertragung braucht einen Sender, einen Übertragungsweg, einen Empfänger und einen Code, den beide kennen.
 
 ## Morse-Übersetzer

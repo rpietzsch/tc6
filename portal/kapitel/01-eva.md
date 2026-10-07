@@ -18,7 +18,24 @@ Jeder Computer, vom Schulrechner bis zur Waschmaschine, arbeitet nach demselben 
 - **Ausgabegeräte** zeigen das Ergebnis: Monitor, Drucker, Lautsprecher, Kopfhörer, Beamer.
 - **Speichermedien** bewahren Daten dauerhaft auf: Festplatte oder SSD, USB-Stick, SD-Karte.
 
+![Explosionszeichnung eines PC mit elf nummerierten Teilen](../bilder/pc-bestandteile.webp "Die Teile eines PC: 1 Monitor, 2 Hauptplatine (Mainboard), 3 Prozessor, 4 Anschlüsse für Laufwerke, 5 Arbeitsspeicher, 6 Erweiterungskarten, 7 Netzteil, 8 optisches Laufwerk, 9 Festplatte, 10 Tastatur, 11 Maus.")
+
 > **Merke:** Ein Touchscreen ist Eingabe- und Ausgabegerät zugleich: Du tippst darauf und er zeigt dir das Bild.
+
+## So sehen die Teile aus
+
+### Eingabe: Maus und Tastatur
+
+![Rote optische Maus von außen](../bilder/maus-aussen.webp "Eine optische Maus von außen.")
+![Geöffnete optische Maus mit Platine](../bilder/maus-innen.webp "Innen sitzt eine Platine mit Chips.")
+![Deutsche Tastatur mit den Tasten eines alten IBM-PC](../bilder/tastatur-ibm-xt.webp "Eine alte Tastatur (IBM XT) mit deutscher Belegung.")
+
+### Verarbeitung: Hauptplatine, Prozessor und Arbeitsspeicher
+
+![Hauptplatine eines Computers aus der Nähe](../bilder/mainboard.webp "Die Hauptplatine (Mainboard) trägt die Teile des Computers.")
+![Prozessor von oben](../bilder/prozessor-heute.webp "Ein Prozessor von oben.")
+![Sammlung von Prozessoren aus verschiedenen Jahren](../bilder/prozessoren-historisch.webp "Prozessoren aus verschiedenen Jahren.")
+![Arbeitsspeicher-Riegel](../bilder/arbeitsspeicher-ddr4.webp "Ein Arbeitsspeicher-Riegel (RAM).")
 
 ## Gesund am Bildschirm
 
