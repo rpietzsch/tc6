@@ -11,4 +11,4 @@ Niederschwelliges Lernportal zum Computer-Teil des sächsischen Lehrplans Techni
 - Externe Links nur aufnehmen, wenn sie geöffnet und geprüft wurden; Status in `docs/links.md` nachtragen.
 - Keine Bestätigungsdialoge über `confirm()`; Rückfragen stehen in der Seite.
 - Vor dem Veröffentlichen `node tests/smoke-reset.js <pfad>/index.html` laufen lassen.
-- Nichts ohne Rückfrage veröffentlichen oder pushen: Sichtbarkeit des Repositorys, Lizenz und Impressum sind Entscheidungen des Nutzers (siehe „Offene Entscheidungen“ in `HANDOFF.md`).
+- Nichts ohne Rückfrage veröffentlichen oder pushen: Repository ist öffentlich, Lizenz MIT, kein Impressum (siehe „Entschieden“ in `HANDOFF.md`). Neue Fremdinhalte (Texte, Bilder, Schriften) nur mit passender Lizenz und Rückfrage übernehmen.

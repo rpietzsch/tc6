@@ -36,4 +36,8 @@ Erwartet wird am Ende `errors []` und `0 von 77 Aufgaben`.
 
 ## Status
 
-In Arbeit. Lizenz und Impressum sind noch nicht festgelegt; siehe „Offene Entscheidungen“ in [`HANDOFF.md`](HANDOFF.md).
+In Arbeit. Stand, Entscheidungen und Plan stehen in [`HANDOFF.md`](HANDOFF.md).
+
+## Lizenz
+
+[MIT](LICENSE). Der Lehrplanauszug in `docs/lehrplan-auszug.md` stammt aus einer amtlichen Quelle und ist davon ausgenommen.

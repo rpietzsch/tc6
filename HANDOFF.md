@@ -45,14 +45,16 @@ Ausgeliefert wird `portal/` über den Workflow `.github/workflows/pages.yml` (Gi
 - Fortschritt im Browser, Zurücksetzen je Blatt und global mit Rückfrage: erledigt.
 - Ziel jetzt: GitHub-Repository, Auslieferung über GitHub Pages, Kapitel für Mitarbeiter leichter bearbeitbar, möglichst als Markdown-Dateien.
 
-## Offene Entscheidungen (vom Nutzer noch nicht beantwortet)
+## Entschieden
 
-1. Repository öffentlich? (Pages ist mit kostenlosem Konto nach meinem Wissensstand nur für öffentliche Repositorys verfügbar; bitte gegen die aktuelle GitHub-Doku prüfen.)
-2. Lizenz. Vorschlag: Inhalte CC BY-SA 4.0, Code MIT.
-3. Repository-Name und Konto. Vorschlag: `tc-werkstatt`.
-4. Markdown-Umbau jetzt oder erst die HTML-Fassung veröffentlichen. Empfehlung: erst unverändert veröffentlichen (Schritt A), dann umbauen (Schritt B), damit sofort eine funktionierende Seite online ist.
-5. Impressum und Datenschutzhinweis für eine öffentliche deutsche Seite: vom Nutzer zu klären, keine Rechtsberatung von hier.
-6. „Kapitelweise zurücksetzen“ ist als Blatt umgesetzt. Ob zusätzlich je Gruppe gewünscht ist, ist offen.
+- Repository: `rpietzsch/tc6`, öffentlich, Auslieferung über GitHub Pages (Schritt A erledigt).
+- Lizenz: MIT für alles Eigene (`LICENSE`). Die Seite enthält keine kopierten Fremdinhalte, nur Links. Der Lehrplanauszug in `docs/` ist ein Auszug aus einer amtlichen Quelle und steht nicht unter dieser Lizenz. Lokal eingebundene Schriften (Schritt C) behalten ihre SIL Open Font License.
+- Impressum: entfällt, da kein geschäftsmäßiges Angebot (rein privat, nicht kommerziell). Eine Datenschutzerklärung ist davon getrennt zu betrachten; siehe Schritt C.
+
+## Offene Entscheidungen
+
+1. Markdown-Umbau (Schritt B): Formatvorschlag in `docs/markdown-format.md` ist noch nicht bestätigt.
+2. „Kapitelweise zurücksetzen“ ist als Blatt umgesetzt. Ob zusätzlich je Gruppe gewünscht ist, ist offen.
 
 ## Plan
 
@@ -77,7 +79,7 @@ Formatvorschlag mit Beispielen: `docs/markdown-format.md`. Der Nutzer hat das Fo
 ### Schritt C: öffentlich tauglich machen
 
 - [ ] Schriften lokal einbinden. Derzeit lädt die Seite Atkinson Hyperlegible, Barlow Semi Condensed und IBM Plex Mono von Google Fonts. Auf einer öffentlichen deutschen Seite datenschutzrechtlich heikel; alle drei stehen unter der SIL Open Font License.
-- [ ] Impressum/Datenschutz nach Entscheidung des Nutzers.
+- [ ] Datenschutz: Mit lokalen Schriften sendet die Seite selbst keine Daten an Dritte. Der Fortschritt bleibt im Browser. Hosting-Protokolle liegen bei GitHub Pages. Ob ein Hinweis nötig ist, vom Nutzer zu entscheiden; keine Rechtsberatung von hier.
 - [ ] `CONTRIBUTING.md`: wie man ein Kapitel im Browser bearbeitet, Format der Übungen, Schreibstil (Du-Anrede, kurze Sätze, keine Emojis als Gliederung).
 - [ ] Die Elternhinweise auf der Übersicht sprechen den Nutzer als „Sie“ an und nennen „Ihr Kind“; für ein öffentliches Portal ggf. allgemeiner fassen.
 
