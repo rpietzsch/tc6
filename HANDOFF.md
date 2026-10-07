@@ -1,6 +1,6 @@
 # Übergabe: TC-Werkstatt Klasse 6
 
-Stand: 2026-10-07. Übergabe aus einer Claude-Sitzung (Web/App) an Claude Code auf dem Rechner des Nutzers. Dieses Dokument ist der Einstieg; alles Weitere liegt in `portal/`, `docs/` und `tests/`.
+Stand: 2026-10-07, nach Umbau auf Markdown-Kapitel (Schritte A bis C erledigt). Dieses Dokument ist der Einstieg; alles Weitere liegt in `portal/`, `docs/` und `tests/`.
 
 ## Worum es geht
 
@@ -10,7 +10,7 @@ Grundlage ist der sächsische Lehrplan Gymnasium Technik/Computer (2004, Überar
 
 ## Was fertig ist
 
-`portal/index.html` ist eine vollständige, eigenständige Seite ohne Build und ohne Bibliotheken (ca. 100 KB). Sie läuft so, wie sie ist, auf GitHub Pages.
+Die Seite unter `portal/` läuft ohne Build und ohne externe Anfragen. Die Inhalte stehen als Markdown in `portal/kapitel/`, ein kleiner Loader baut daraus die Seite. Online: https://rpietzsch.github.io/tc6/
 
 - 13 Arbeitsblätter in 5 Gruppen plus Übersichtsseite (siehe Tabelle unten).
 - 19 interaktive Übungen in drei Typen: Quiz (Auswahl oder Zahleneingabe), Zuordnen, Reihenfolge. Bestanden ab 70 %.
@@ -19,8 +19,9 @@ Grundlage ist der sächsische Lehrplan Gymnasium Technik/Computer (2004, Überar
 - Fortschritt in `localStorage` (Schlüssel `tc-werkstatt-6`, Objekt `{id: 1}`), Zurücksetzen je Blatt und global mit Rückfrage auf der Seite (kein `confirm()`).
 - Je Blatt ein Block „Weiterlesen und Ausprobieren“; auf der Übersicht „Offizielle Angebote“ und „Abgleich mit dem Kompetenzrahmen“. Alle Links mit Prüfstatus: `docs/links.md`.
 - Hell- und Dunkelmodus über CSS-Tokens, Handybreite getestet, Navigation über `#anker`.
+- Schriften liegen lokal (`assets/fonts/`), `marked` liegt als Datei im Repository (`assets/vendor/`). Die Seite ruft keine fremden Server auf.
 
-Ausgeliefert wird `portal/` über den Workflow `.github/workflows/pages.yml` (GitHub Pages, Quelle „GitHub Actions“, kein Build).
+Ausgeliefert wird `portal/` über den Workflow `.github/workflows/pages.yml` (GitHub Pages, Quelle „GitHub Actions“). Der Workflow führt vorher das Prüfskript aus. Bei Pull Requests läuft `.github/workflows/check.yml` (Prüfskript und Rauchtest).
 
 | Gruppe | Blatt (`#id`) | Lehrplanbezug |
 |---|---|---|
@@ -30,12 +31,30 @@ Ausgeliefert wird `portal/` über den Workflow `.github/workflows/pages.yml` (Gi
 | Codieren und Programmieren | `morsen`, `mini`, `prog` | Wahlbereiche 3 und 5 |
 | Abschluss | `projekt` | fasst LB 1 zusammen |
 
-## Aufbau des Codes in index.html
+## Aufbau
 
-- `<style>`: Tokens auf `:root`, Dunkelwerte in `@media (prefers-color-scheme: dark)` und `:root[data-theme="dark"]`.
-- Inhalt: je Blatt eine `<section class="blatt" id="…" data-g="Gruppe" data-t="Kurztitel" data-d="Minuten">`. Übungen sind leere `<div class="ex" data-ex="ID">`, Praxisaufgaben `<ul class="praxis">`, Linkblöcke `<ul class="links">`.
-- `<script>`: `EX` (alle Übungsdaten; bei Quiz ist die erste Option die richtige, gemischt wird beim Anzeigen), `mountQuiz`, `mountOrder`, Seitenaufbau (`baueNav`, `fortschritt`, `zeige`, `resetLeiste`), dann Minicomputer und Morse als eigene Funktionsblöcke.
-- IDs der Praxisaufgaben entstehen aus Blatt-ID und Position (`eva-t0-1`). Wer Aufgaben umsortiert, verschiebt gespeicherte Häkchen. Beim Markdown-Umbau sollten feste IDs her.
+```
+portal/
+  index.html                 Hülle: Kopf, Navigation, Platz für die Blätter
+  assets/app.css             Stile (Tokens auf :root, Hell/Dunkel), @font-face
+  assets/app.js              Loader, Bearbeitung des gerenderten HTML, Übungen (mountQuiz, mountOrder), Navigation, Fortschritt
+  assets/kapitel-parser.js   liest Kopfdaten und Übungsblöcke; wird auch vom Prüfskript benutzt
+  assets/bausteine/          morse.js, minicomputer.js (Platzhalter {{baustein: name}})
+  assets/vendor/             marked.umd.js mit Lizenz und README
+  assets/fonts/              woff2 und OFL-Texte
+  kapitel/index.json         Reihenfolge der Blätter
+  kapitel/NN-id.md           ein Blatt je Datei (Format: docs/markdown-format.md)
+  bilder/eva.svg             EVA-Schema; wird in die Seite eingebettet, damit CSS-Tokens und Dunkelmodus gelten
+tests/validate-kapitel.js    Prüfskript (Format, IDs, Links, Bilder, Reihenfolge)
+tests/ids-stabil.txt         alle ausgelieferten Übungs- und Aufgaben-IDs
+tests/smoke-reset.js         Rauchtest im Browser (Playwright), startet selbst einen Webserver
+```
+
+- Ablauf beim Laden: `kapitel/index.json` holen, jede Datei per `fetch` laden, `KapitelParser.parse` ersetzt Übungsblöcke und Bausteine durch HTML-Platzhalter, `marked` rendert den Rest, `nachbearbeiten` macht daraus Merkkästen, Tabellen mit Rollbalken, Aufgabenlisten, Linklisten und Abbildungen. Danach hängt der Code Übungen, Häkchen und Bausteine ein.
+- Fehler in einem Kapitel erscheinen als roter Kasten mit Datei und Zeile auf dem Blatt; die übrigen Blätter laufen weiter.
+- Die Seite braucht einen Webserver (`fetch`); per `file://` zeigt sie eine Erklärung an.
+- Praxisaufgaben haben feste IDs im Text (`{#eva-t0-0}`). Die ersten 58 folgen dem alten Schema `blatt-t<Liste>-<Position>`, damit gespeicherter Fortschritt gültig blieb. Neue Aufgaben: `blatt-p1` usw.
+- Der Umbau wurde gegen die alte HTML-Fassung geprüft: Text, Links, Tabellen, IDs und alle Übungsdaten sind gleich. Kleine Unterschiede: Zahlenspalten sind jetzt rechtsbündig (`---:`), Tastenkürzel und Dateiendungen erscheinen als `code`.
 
 ## Entscheidungen des Nutzers bisher
 
@@ -53,35 +72,25 @@ Ausgeliefert wird `portal/` über den Workflow `.github/workflows/pages.yml` (Gi
 
 ## Offene Entscheidungen
 
-1. Markdown-Umbau (Schritt B): Formatvorschlag in `docs/markdown-format.md` ist noch nicht bestätigt.
-2. „Kapitelweise zurücksetzen“ ist als Blatt umgesetzt. Ob zusätzlich je Gruppe gewünscht ist, ist offen.
+1. „Kapitelweise zurücksetzen“ ist als Blatt umgesetzt. Ob zusätzlich je Gruppe gewünscht ist, ist offen.
+2. Datenschutzhinweis: Ob die Seite trotz fehlender Drittanfragen einen kurzen Hinweis bekommen soll (Fortschritt nur im Browser, Hosting bei GitHub Pages), ist vom Nutzer zu entscheiden. Keine Rechtsberatung von hier.
 
 ## Plan
 
-### Schritt A: unverändert veröffentlichen
+### Schritt A: veröffentlichen (erledigt)
 
-- [ ] Repository anlegen (`gh repo create <name> --public`), `portal/index.html` als `index.html` ins Wurzelverzeichnis, dazu `README.md` und `LICENSE`.
-- [ ] Pages einschalten: Branch `main`, Ordner `/` (Settings → Pages oder `gh api`).
-- [ ] Seite unter `https://<konto>.github.io/<name>/` öffnen, Smoke-Test laufen lassen.
+- [x] Repository `rpietzsch/tc6`, Pages über GitHub Actions, `LICENSE`, `README.md`.
 
-### Schritt B: Inhalte nach Markdown auslagern
+### Schritt B: Inhalte nach Markdown auslagern (erledigt)
 
-Formatvorschlag mit Beispielen: `docs/markdown-format.md`. Der Nutzer hat das Format gesehen, aber noch nicht ausdrücklich bestätigt.
+- [x] Zielstruktur, Loader, `marked` als Datei im Repository, Umwandlung aller 14 Blätter, `eva.svg`, feste IDs, Prüfskript und Action. Das Format hat der Nutzer bestätigt (`docs/markdown-format.md`).
 
-- [ ] Zielstruktur anlegen: `index.html` (Hülle), `assets/app.css`, `assets/app.js`, `assets/bausteine/{morse,minicomputer}.js`, `kapitel/NN-id.md`, `kapitel/index.json` oder Reihenfolge über Dateinamen, `bilder/`.
-- [ ] Loader schreiben: Kapitel per `fetch` laden, Front-Matter lesen, Markdown rendern, Blöcke `quiz` / `zuordnen` / `reihenfolge` in die vorhandenen Übungs-Engines geben, Aufgabenlisten `- [ ]` als Praxisaufgaben mit Häkchen.
-- [ ] Markdown-Parser ohne CDN einbinden (z. B. `marked` als Datei im Repository) oder Build per GitHub Action. Empfehlung: kein Build, damit Mitarbeiter im Browser editieren können.
-- [ ] 13 Blätter und die Übersicht aus `index.html` in Markdown überführen; Übungsdaten aus `EX` in die Blöcke.
-- [ ] EVA-Schema (Inline-SVG im Blatt `eva`) als `bilder/eva.svg` auslagern; es nutzt CSS-Klassen für die Themenfarben, das muss beim Auslagern gelöst werden (Inline-Einbindung oder `currentColor`).
-- [ ] Feste IDs für Übungen und Praxisaufgaben; vorhandene IDs der Übungen beibehalten, damit gespeicherter Fortschritt gültig bleibt.
-- [ ] Prüfskript für Mitwirkende: jede Übung hat `id`, genau eine richtige Antwort, keine doppelten IDs. Als GitHub Action bei Pull Requests.
+### Schritt C: öffentlich tauglich machen (erledigt bis auf den Datenschutzhinweis)
 
-### Schritt C: öffentlich tauglich machen
-
-- [ ] Schriften lokal einbinden. Derzeit lädt die Seite Atkinson Hyperlegible, Barlow Semi Condensed und IBM Plex Mono von Google Fonts. Auf einer öffentlichen deutschen Seite datenschutzrechtlich heikel; alle drei stehen unter der SIL Open Font License.
-- [ ] Datenschutz: Mit lokalen Schriften sendet die Seite selbst keine Daten an Dritte. Der Fortschritt bleibt im Browser. Hosting-Protokolle liegen bei GitHub Pages. Ob ein Hinweis nötig ist, vom Nutzer zu entscheiden; keine Rechtsberatung von hier.
-- [ ] `CONTRIBUTING.md`: wie man ein Kapitel im Browser bearbeitet, Format der Übungen, Schreibstil (Du-Anrede, kurze Sätze, keine Emojis als Gliederung).
-- [ ] Die Elternhinweise auf der Übersicht sprechen den Nutzer als „Sie“ an und nennen „Ihr Kind“; für ein öffentliches Portal ggf. allgemeiner fassen.
+- [x] Schriften lokal (Atkinson Hyperlegible, Barlow Semi Condensed, IBM Plex Mono; nur Latin-Teilmenge, SIL OFL, Lizenztexte in `assets/fonts/`).
+- [x] `CONTRIBUTING.md`.
+- [x] Elternhinweise auf der Übersicht neutral formuliert.
+- [ ] Offen: Datenschutzhinweis, siehe „Offene Entscheidungen“.
 
 ### Schritt D: inhaltliche Restpunkte
 
@@ -101,11 +110,10 @@ Formatvorschlag mit Beispielen: `docs/markdown-format.md`. Der Nutzer hat das Fo
 
 ## Prüfen
 
-`tests/smoke-reset.js` (Playwright) prüft Speichern, Neuladen, Blatt-Reset, Gesamt-Reset:
-
 ```
-npm i playwright && npx playwright install chromium
-node tests/smoke-reset.js portal/index.html
+node tests/validate-kapitel.js          # Format, IDs, Links, Bilder; ohne Installation
+npm install && npx playwright install chromium
+node tests/smoke-reset.js               # Browsertest, Erwartung: "Alles in Ordnung."
 ```
 
-Erwartet wird am Ende `errors []` und `0 von 77 Aufgaben`.
+Der Rauchtest prüft 14 Blätter, 19 Übungen, 58 Aufgaben, Speichern, Neuladen, Zurücksetzen je Blatt und gesamt, eine gelöste Reihenfolge-Übung und die Breite 400 px.

@@ -1,6 +1,6 @@
 # Externe Links im Portal (Stand 2026-10-07)
 
-Automatisch aus `portal/index.html` ausgelesen. Spalte Prüfung: siehe Legende unten.
+Ausgelesen aus `portal/kapitel/*.md`. Neue Links hier eintragen; `node tests/validate-kapitel.js` meldet Links, die hier fehlen. Spalte Prüfung: siehe Legende unten.
 
 
 ## Übersicht (`#start`)

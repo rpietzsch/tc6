@@ -1,6 +1,6 @@
 # TC-Werkstatt Klasse 6
 
-Niederschwelliges Lernportal zum Computer-Teil des sächsischen Lehrplans Technik/Computer (Gymnasium, Klasse 6). Eine statische Seite ohne Build und ohne Bibliotheken, gedacht zum Selbstlernen.
+Niederschwelliges Lernportal zum Computer-Teil des sächsischen Lehrplans Technik/Computer (Gymnasium, Klasse 6). Eine statische Seite ohne Build, gedacht zum Selbstlernen. Die Inhalte stehen als Markdown-Dateien und lassen sich direkt auf GitHub bearbeiten, siehe [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Inhalt
 
@@ -13,26 +13,35 @@ Grundlage ist Lernbereich 1 „Grundlagen im Umgang mit digitalen Medien“ sowi
 
 ## Ausprobieren
 
-`portal/index.html` im Browser öffnen. Es ist keine Installation nötig.
+Online: https://rpietzsch.github.io/tc6/
+
+Lokal, im Ordner `portal`:
+
+```
+python3 -m http.server 8000
+```
+
+Dann `http://localhost:8000` öffnen. Die Seite lädt ihre Kapitel nach und läuft deshalb nicht per Doppelklick auf `index.html`.
 
 ## Aufbau
 
 | Pfad | Inhalt |
 |---|---|
-| `portal/` | Die Seite (`index.html`) |
-| `docs/` | Lehrplanauszug, Recherche, Linkprüfung, Formatvorschlag für Markdown-Kapitel |
-| `tests/` | Smoke-Test für Speichern und Zurücksetzen (Playwright) |
+| `portal/` | Die Seite: `index.html`, `assets/` (CSS, JavaScript, Schriften), `kapitel/` (Inhalte als Markdown), `bilder/` |
+| `docs/` | Format der Kapitel, Lehrplanauszug, Recherche, Linkprüfung |
+| `tests/` | Prüfskript für die Kapitel und Rauchtest im Browser (Playwright) |
 | `HANDOFF.md` | Stand, offene Entscheidungen und Plan |
 | `CLAUDE.md` | Arbeitsregeln für Claude Code |
 
 ## Test
 
 ```
-npm i playwright && npx playwright install chromium
-node tests/smoke-reset.js portal/index.html
+node tests/validate-kapitel.js        # Format der Kapitel, ohne Installation
+npm install && npx playwright install chromium
+node tests/smoke-reset.js             # Rauchtest im Browser
 ```
 
-Erwartet wird am Ende `errors []` und `0 von 77 Aufgaben`.
+Beides läuft auch bei jedem Pull Request (GitHub Actions) und vor jeder Veröffentlichung.
 
 ## Status
 
@@ -40,4 +49,4 @@ In Arbeit. Stand, Entscheidungen und Plan stehen in [`HANDOFF.md`](HANDOFF.md).
 
 ## Lizenz
 
-[MIT](LICENSE). Der Lehrplanauszug in `docs/lehrplan-auszug.md` stammt aus einer amtlichen Quelle und ist davon ausgenommen.
+[MIT](LICENSE). Die Schriften unter `portal/assets/fonts/` stehen unter der SIL Open Font License, `marked` unter der MIT-Lizenz (siehe `portal/assets/vendor/`). Der Lehrplanauszug in `docs/lehrplan-auszug.md` stammt aus einer amtlichen Quelle und ist davon ausgenommen.
