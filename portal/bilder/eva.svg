@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 170" role="img" aria-label="Schema: Eingabe, Verarbeitung, Ausgabe und darunter Speichern">
+  <!-- Das Style-Element gilt nur, wenn die Datei allein angezeigt wird (zum Beispiel auf GitHub).
+       Im Portal wird das Bild in die Seite eingebettet; dort gelten die Farben und Klassen aus assets/app.css. -->
+  <style>
+    :root{--ink:#13243A;--paper:#EDF1F4}
+    @media (prefers-color-scheme:dark){:root{--ink:#E5EEF8;--paper:#12243B}}
+    text{font-family:"IBM Plex Mono",Consolas,Menlo,monospace;fill:var(--ink)}
+    .s{fill:none;stroke:var(--ink);stroke-width:.9}
+    .pf{fill:var(--ink)}
+    .fl{fill:var(--paper);stroke:var(--ink);stroke-width:1.6}
+  </style>
+  <defs><marker id="pf1" markerWidth="9" markerHeight="6" refX="9" refY="3" orient="auto-start-reverse"><path class="pf" d="M0,0 L9,3 L0,6z"/></marker></defs>
+  <rect class="fl" x="10" y="20" width="150" height="60"/><rect class="fl" x="205" y="20" width="150" height="60"/><rect class="fl" x="400" y="20" width="150" height="60"/>
+  <rect class="fl" x="205" y="115" width="150" height="45"/>
+  <path class="s" d="M160,50 H205" marker-end="url(#pf1)"/><path class="s" d="M355,50 H400" marker-end="url(#pf1)"/><path class="s" d="M280,80 V115" marker-start="url(#pf1)" marker-end="url(#pf1)"/>
+  <text x="85" y="46" text-anchor="middle" font-size="15" font-weight="500">EINGABE</text><text x="85" y="66" text-anchor="middle" font-size="11">Tastatur, Maus</text>
+  <text x="280" y="46" text-anchor="middle" font-size="15" font-weight="500">VERARBEITUNG</text><text x="280" y="66" text-anchor="middle" font-size="11">Zentraleinheit</text>
+  <text x="475" y="46" text-anchor="middle" font-size="15" font-weight="500">AUSGABE</text><text x="475" y="66" text-anchor="middle" font-size="11">Monitor, Drucker</text>
+  <text x="280" y="142" text-anchor="middle" font-size="13" font-weight="500">SPEICHERN</text>
+</svg>
