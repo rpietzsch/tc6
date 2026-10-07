@@ -1,0 +1,15 @@
+# Abhängigkeiten und Testausgaben
+node_modules/
+package-lock.json
+tests/*.png
+
+# macOS
+.DS_Store
+
+# Editoren
+.vscode/
+.idea/
+*.swp
+
+# Lokale Claude-Code-Einstellungen
+.claude/settings.local.json
