@@ -95,7 +95,7 @@ Keine. (Zurücksetzen gibt es je Blatt und gesamt; eine Gruppen-Variante ist nic
 
 ### Schritt D: inhaltliche Restpunkte
 
-- [ ] `https://module-sachsen.dilewe.de/` (digitale Selbstlernmodule des LaSuB) öffnen und prüfen, ob es Module für TC oder Informatik gibt. Der Abruf scheiterte in der bisherigen Sitzung; der Link steht mit entsprechendem Vorbehalt auf der Übersicht.
+- [x] Selbstlernmodule des LaSuB geprüft (2026-10-07, Hinweis des Nutzers und eigene Kontrolle im Browser): kein Modul für Technik/Computer; Informatik nur „Grundlagen der Künstlichen Intelligenz“ (GY 9) und „Zukunftsvisionen“ (10-13). Übersicht und `docs/links.md` sind angepasst. Neu prüfen, wenn die Seite wächst: Modulliste auf https://module-sachsen.dilewe.de/inhalt/f-a-q-und-hilfe/index.html.
 - [ ] Die sechs Bezeichnungen des KMK-Kompetenzrahmens in der Abgleichstabelle gegen das Original prüfen (PDF ließ sich nicht auslesen, Bezeichnungen stammen aus dem Gedächtnis): https://www.kmk.org/fileadmin/Dateien/pdf/PresseUndAktuelles/2016/2016_12_08-KMK-Kompetenzen-in-der-digitalen-Welt.pdf
 - [ ] Fachinhalte von einer Lehrkraft gegenlesen lassen; bisher nicht geschehen.
 - [ ] Schulinternen Stoffverteilungsplan erfragen; welche Teile die Schule in Klasse 6 tatsächlich behandelt, ist unbekannt.

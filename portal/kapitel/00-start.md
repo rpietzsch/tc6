@@ -29,7 +29,7 @@ Hier findest du alles, was im Computer-Teil des Fachs TC dran ist: wie ein Compu
 
 Ein fertiges Lernportal für das Fach Technik/Computer stellt das Landesamt für Schule und Bildung nicht bereit. Es gibt aber staatliche und öffentlich getragene Angebote, die Teile des Stoffs abdecken. Sie sind auch auf den einzelnen Blättern verlinkt.
 
-- Sachsen: [Digitale Selbstlernmodule](https://module-sachsen.dilewe.de/) – Vom Landesamt für Schule und Bildung entwickelte, frei zugängliche Module mit Videos und interaktiven Aufgaben für 16 Fächer ab Klasse 3. Bitte dort nachsehen, ob Technik/Computer oder Informatik inzwischen dabei ist.
+- Sachsen: [Digitale Selbstlernmodule](https://module-sachsen.dilewe.de/) – Vom Landesamt für Schule und Bildung entwickelte Module für viele Fächer, die sich ohne Anmeldung ansehen lassen. Für Technik/Computer gibt es dort kein Modul. In Informatik stehen zwei Module zur Künstlichen Intelligenz für Klasse 9 und für Klasse 10 bis 13 (Stand 7. Oktober 2026), für Klasse 6 passt keines.
 - Sachsen: [MeSax-Mediathek](https://www.lernsax.de/wws/mediathek.php) – Lizenzierte Lernvideos und Arbeitsblätter für sächsische Schulen. Suchen geht ohne Anmeldung, für viele Medien braucht man den Zugang der Schule.
 - Sachsen: [Lehrplan Technik/Computer](https://www.schulportal.sachsen.de/lplandb/lehrplan/130) – Der Lehrplan für das Gymnasium, auf dem dieses Portal beruht.
 - Bundesweit: [Lernmodule des Internet-ABC](https://www.internet-abc.de/kinder/lernen-schule/lernmodule/) – 15 interaktive Module für Kinder zu Internet, Kommunikation und Sicherheit, getragen von den Landesmedienanstalten.
@@ -49,7 +49,7 @@ Die sächsischen Lehrpläne folgen seit 2019 dem Rahmen „Kompetenzen in der di
 | 5 Problemlösen und Handeln | [Hardware, Software, Oberfläche](#hardsoft), [Sensoren und Aktoren](#mini), [Minicomputer programmieren](#prog) |
 | 6 Analysieren und Reflektieren | [Quellen prüfen](#web), [Mediengebrauch reflektieren](#schulnetz), [Nachrichten übertragen](#morsen) |
 
-Schwächer abgedeckt sind Werbung, Online-Spiele, Streaming und Urheberrecht, weil der Lehrplan sie im Fach TC nicht verlangt. Dafür sind auf den Blättern die passenden Lernmodule des Internet-ABC verlinkt. Die staatlichen Selbstlernmodule arbeiten mit Lernvideos, dieses Portal mit Text, Übungen und Praxisaufgaben. Wer Videos ergänzen möchte, findet sie in den Mediatheken oben.
+Schwächer abgedeckt sind Werbung, Online-Spiele, Streaming und Urheberrecht, weil der Lehrplan sie im Fach TC nicht verlangt. Dafür sind auf den Blättern die passenden Lernmodule des Internet-ABC verlinkt. Dieses Portal arbeitet mit Text, Bildern, Übungen und Praxisaufgaben. Wer Videos ergänzen möchte, findet sie in den Mediatheken oben.
 
 ## Datenschutz
 

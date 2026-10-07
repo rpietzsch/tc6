@@ -8,7 +8,7 @@ Ausgelesen aus `portal/kapitel/*.md`. Neue Links hier eintragen; `node tests/val
 | Titel | URL | Prüfung |
 |---|---|---|
 | LibreOffice | https://de.libreoffice.org | abgerufen, ok |
-| Digitale Selbstlernmodule | https://module-sachsen.dilewe.de/ | NICHT GEPRÜFT (Abruf scheiterte), vom SMK als frei zugänglich genannt |
+| Digitale Selbstlernmodule | https://module-sachsen.dilewe.de/ | abgerufen, ok (2026-10-07, im Browser; die Seite lädt ihre Liste per JavaScript). Modulliste auf https://module-sachsen.dilewe.de/inhalt/f-a-q-und-hilfe/index.html: kein Modul für Technik/Computer; Informatik: „Grundlagen der Künstlichen Intelligenz“ (GY 9) und „Zukunftsvisionen: Wie verändert Künstliche Intelligenz unser Leben?“ (GY/OS u. a. 10-13). Die Module öffnen ohne Anmeldung |
 | MeSax-Mediathek | https://www.lernsax.de/wws/mediathek.php | abgerufen, ok |
 | Lehrplan Technik/Computer | https://www.schulportal.sachsen.de/lplandb/lehrplan/130 | abgerufen, ok |
 | Lernmodule des Internet-ABC | https://www.internet-abc.de/kinder/lernen-schule/lernmodule/ | abgerufen, ok |
