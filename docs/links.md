@@ -164,6 +164,14 @@ Ausgelesen aus `portal/kapitel/*.md`. Neue Links hier eintragen; `node tests/val
 |---|---|---|
 | Datenschutzerklärung von GitHub | https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement | abgerufen, ok (2026-10-07; erwähnt GitHub Pages nicht ausdrücklich) |
 
+## Seitenfuß (`assets/app.js`)
+
+| Titel | URL | Prüfung |
+|---|---|---|
+| Projekt auf GitHub | https://github.com/rpietzsch/tc6 | abgerufen, ok (2026-10-07) |
+| Kapitel-Datei, Beispiel `01-eva.md` | https://github.com/rpietzsch/tc6/blob/main/portal/kapitel/01-eva.md | abgerufen, ok (2026-10-07) |
+| Bearbeiten, Beispiel `01-eva.md` | https://github.com/rpietzsch/tc6/edit/main/portal/kapitel/01-eva.md | leitet auf die GitHub-Anmeldung um (2026-10-07), nach Anmeldung die Bearbeitungsansicht |
+
 ## Legende
 
 - **abgerufen, ok**: am 2026-10-06 per WebFetch geöffnet, Inhalt passte.

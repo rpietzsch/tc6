@@ -3,6 +3,9 @@
 const TC = window.TC = window.TC || {};
 TC.bausteine = TC.bausteine || {};
 
+/* Quelle der Inhalte auf GitHub (Seitenfuß) */
+const REPO = 'https://github.com/rpietzsch/tc6', ZWEIG = 'main', KAPITEL_PFAD = 'portal/kapitel/';
+
 /* ---------- Hilfen ---------- */
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
 function h(tag, attrs, ...kids) {
@@ -203,7 +206,7 @@ function fehlerBox(datei, liste) {
 function baueBlatt(datei, text, url, spaeter) {
   const p = KapitelParser.parse(text);
   const m = p.meta, name = 'kapitel/' + datei;
-  const sec = h('section', {class: 'blatt', id: m.id || datei, hidden: true, 'data-g': m.gruppe || '', 'data-t': m.kurztitel || m.titel || datei, 'data-d': m.dauer || ''});
+  const sec = h('section', {class: 'blatt', id: m.id || datei, hidden: true, 'data-g': m.gruppe || '', 'data-t': m.kurztitel || m.titel || datei, 'data-d': m.dauer || '', 'data-datei': datei});
   const tpl = document.createElement('template'); tpl.innerHTML = marked.parse(p.markdown, {gfm: true}); // inaktiv: Bilder laden erst, wenn sie eingehängt sind
   const body = tpl.content;
   nachbearbeiten(body, url, spaeter);
@@ -229,7 +232,7 @@ async function ladeKapitel() {
   const roh = await Promise.all(liste.map(async f => { const u = new URL(f, basis); return {f, u, text: await (await holen(u)).text()}; }));
   const secs = roh.map(k => {
     try { return baueBlatt(k.f, k.text, k.u, spaeter); }
-    catch (e) { console.error(k.f, e); return h('section', {class: 'blatt', id: k.f, hidden: true, 'data-t': k.f}, h('h1', null, k.f), fehlerBox('kapitel/' + k.f, [{zeile: 1, text: String(e.message || e)}])); }
+    catch (e) { console.error(k.f, e); return h('section', {class: 'blatt', id: k.f, hidden: true, 'data-t': k.f, 'data-datei': k.f}, h('h1', null, k.f), fehlerBox('kapitel/' + k.f, [{zeile: 1, text: String(e.message || e)}])); }
   });
   await Promise.all(spaeter);
   return secs;
@@ -264,6 +267,14 @@ function fortschritt() {
   $('#ptext').textContent = d + ' von ' + n + ' Aufgaben'; $('#pfill').style.width = (n ? 100 * d / n : 0) + '%'; baueNav(); resetLeiste();
   $$('.ex[data-ex]').forEach(el => { const c = $('.chip', $('.ex-kopf', el) || el); if (c && done[el.dataset.ex]) { c.classList.add('ok'); c.textContent = 'Geschafft'; } });
 }
+function quelle(sec) {
+  const f = $('#quelle'); if (!f) return;
+  const a = (href, text) => h('a', {href, target: '_blank', rel: 'noopener'}, text);
+  const datei = sec.dataset.datei, pfad = KAPITEL_PFAD + datei;
+  f.replaceChildren(
+    ...(datei ? ['Dieses Blatt auf GitHub: ', a(REPO + '/blob/' + ZWEIG + '/' + pfad, datei), ' · ', a(REPO + '/edit/' + ZWEIG + '/' + pfad, 'bearbeiten'), ' · '] : []),
+    a(REPO, 'Projekt auf GitHub'));
+}
 function zeige(id, scroll) {
   let i = blaetter.findIndex(s => s.id === id); if (i < 0) i = 0;
   blaetter.forEach((s, k) => s.hidden = k !== i); aktuell = i; resetLeiste();
@@ -271,7 +282,7 @@ function zeige(id, scroll) {
   const w = $('#weiter'); w.replaceChildren(
     i > 0 ? h('a', {href: '#' + blaetter[i - 1].id}, '← ' + blaetter[i - 1].dataset.t) : h('span'),
     i < blaetter.length - 1 ? h('a', {href: '#' + blaetter[i + 1].id}, blaetter[i + 1].dataset.t + ' →') : h('span'));
-  baueNav();
+  baueNav(); quelle(blaetter[i]);
   if (matchMedia('(max-width:860px)').matches) $('#navd').open = false;
   if (scroll) window.scrollTo(0, 0);
 }

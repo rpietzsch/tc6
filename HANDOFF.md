@@ -68,11 +68,13 @@ tests/smoke-reset.js         Rauchtest im Browser (Playwright), startet selbst e
 
 - Repository: `rpietzsch/tc6`, öffentlich, Auslieferung über GitHub Pages (Schritt A erledigt).
 - Lizenz: MIT für alles Eigene (`LICENSE`). Die Seite enthält keine kopierten Fremdinhalte, nur Links. Der Lehrplanauszug in `docs/` ist ein Auszug aus einer amtlichen Quelle und steht nicht unter dieser Lizenz. Lokal eingebundene Schriften (Schritt C) behalten ihre SIL Open Font License.
+- Zurücksetzen des Fortschritts: je Blatt und gesamt reicht, nicht zusätzlich je Gruppe.
+- Seitenfuß: auf jedem Blatt Links auf die Markdown-Datei des Blatts (GitHub, ansehen und bearbeiten) und auf das Projekt (`quelle()` in `assets/app.js`).
 - Impressum: entfällt, da kein geschäftsmäßiges Angebot (rein privat, nicht kommerziell). Ein Datenschutzhinweis steht trotzdem auf der Übersicht (siehe Schritt C).
 
 ## Offene Entscheidungen
 
-1. „Kapitelweise zurücksetzen“ ist als Blatt umgesetzt. Ob zusätzlich je Gruppe gewünscht ist, ist offen.
+Keine. (Zurücksetzen gibt es je Blatt und gesamt; eine Gruppen-Variante ist nicht gewünscht.)
 
 ## Plan
 

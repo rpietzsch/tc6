@@ -138,6 +138,16 @@ const lauf = async (url) => {
     pruefe('alle Anfragen gehen an den eigenen Server (' + anfragen.length + ' Anfragen)', fremd.length === 0, JSON.stringify(fremd.map(a => a.url)));
     pruefe('nur GET-Anfragen ohne Parameter', anfragen.every(a => a.methode === 'GET' && !new URL(a.url).search), JSON.stringify(anfragen.filter(a => a.methode !== 'GET' || new URL(a.url).search)));
     const extern = await p.$$eval('a[href^="http"]', as => as.filter(a => a.target !== '_blank').map(a => a.href));
+    // Seitenfuß: Link auf die Markdown-Datei des Blatts und auf das Projekt
+    const index = await (await p.request.get(url + 'kapitel/index.json')).json();
+    let fussOk = true, fussInfo = '';
+    for (let k = 0; k < alleIds.length; k++) {
+      await p.goto(url + '#' + alleIds[k]); await p.waitForTimeout(30);
+      const hrefs = await p.$$eval('#quelle a', as => as.map(a => a.href + '|' + a.target));
+      const soll = 'https://github.com/rpietzsch/tc6/blob/main/portal/kapitel/' + index[k] + '|_blank';
+      if (hrefs[0] !== soll || !hrefs.includes('https://github.com/rpietzsch/tc6|_blank')) { fussOk = false; fussInfo = alleIds[k] + ': ' + JSON.stringify(hrefs); break; }
+    }
+    pruefe('Seitenfuß: Link auf die Kapitel-Datei und das Projekt, auf allen Blättern', fussOk, fussInfo);
     pruefe('externe Links öffnen im neuen Tab', extern.length === 0, JSON.stringify(extern));
     pruefe('keine Cookies', (await c.cookies()).length === 0 && (await speicher()).cookie === '', JSON.stringify(await c.cookies()));
   } catch (e) {
