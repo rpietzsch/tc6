@@ -38,7 +38,7 @@ Ein fertiges Lernportal für das Fach Technik/Computer stellt das Landesamt für
 
 ## Abgleich mit dem Kompetenzrahmen
 
-Die sächsischen Lehrpläne folgen seit 2019 dem Rahmen „Kompetenzen in der digitalen Welt“ der Kultusministerkonferenz. Die Tabelle zeigt, welche Blätter welchen der sechs Bereiche bedienen.
+Der Rahmen „Kompetenzen in der digitalen Welt“ der Kultusministerkonferenz ([Beschluss vom 8. Dezember 2016](https://www.kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/2016/2016_12_08-Bildung-in-der-digitalen-Welt.pdf)) wurde zum Schuljahr 2019/2020 in die sächsischen Lehrpläne aufgenommen ([Sachsen: Schulische Medienbildung](https://www.medienbildung.sachsen.de/schulische-medienbildung-4494.html)). Die Tabelle zeigt, welche Blätter welchen der sechs Bereiche bedienen.
 
 | Kompetenzbereich | Blätter in diesem Portal |
 | --- | --- |
@@ -46,8 +46,8 @@ Die sächsischen Lehrpläne folgen seit 2019 dem Rahmen „Kompetenzen in der di
 | 2 Kommunizieren und Kooperieren | [E-Mail schreiben](#mail), [Digitale Kommunikation in der Schule](#schulnetz) |
 | 3 Produzieren und Präsentieren | [Text schreiben und formatieren](#text), [Tabellen und Bilder](#tabelle), [Projekt](#projekt) |
 | 4 Schützen und sicher Agieren | [Sicher im Netz](#sicher), [Computerarbeitsplatz](#eva) (gesundes Arbeiten) |
-| 5 Problemlösen und Handeln | [Hardware, Software, Oberfläche](#hardsoft), [Sensoren und Aktoren](#mini), [Minicomputer programmieren](#prog) |
-| 6 Analysieren und Reflektieren | [Quellen prüfen](#web), [Mediengebrauch reflektieren](#schulnetz), [Nachrichten übertragen](#morsen) |
+| 5 Problemlösen und Handeln | [Hardware, Software, Oberfläche](#hardsoft), [Sensoren und Aktoren](#mini), [Minicomputer programmieren](#prog), [Nachrichten übertragen](#morsen) (Codes) |
+| 6 Analysieren und Reflektieren | [Quellen prüfen](#web), [Mediengebrauch reflektieren](#schulnetz) |
 
 Schwächer abgedeckt sind Werbung, Online-Spiele, Streaming und Urheberrecht, weil der Lehrplan sie im Fach TC nicht verlangt. Dafür sind auf den Blättern die passenden Lernmodule des Internet-ABC verlinkt. Dieses Portal arbeitet mit Text, Bildern, Übungen und Praxisaufgaben. Wer Videos ergänzen möchte, findet sie in den Mediatheken oben.
 

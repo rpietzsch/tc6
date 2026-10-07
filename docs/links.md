@@ -12,6 +12,8 @@ Ausgelesen aus `portal/kapitel/*.md`. Neue Links hier eintragen; `node tests/val
 | MeSax-Mediathek | https://www.lernsax.de/wws/mediathek.php | abgerufen, ok |
 | Lehrplan Technik/Computer | https://www.schulportal.sachsen.de/lplandb/lehrplan/130 | abgerufen, ok |
 | Lernmodule des Internet-ABC | https://www.internet-abc.de/kinder/lernen-schule/lernmodule/ | abgerufen, ok |
+| KMK-Beschluss „Bildung in der digitalen Welt“ vom 8. Dezember 2016 | https://www.kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/2016/2016_12_08-Bildung-in-der-digitalen-Welt.pdf | abgerufen, ok (2026-10-07); Text enthält die sechs Kompetenzbereiche wörtlich |
+| Sachsen: Schulische Medienbildung | https://www.medienbildung.sachsen.de/schulische-medienbildung-4494.html | abgerufen, ok (2026-10-07); nennt „zum Schuljahr 2019/2020 in die sächsischen Lehrpläne aufgenommen“ |
 | MUNDO | https://mundo.schule/ | abgerufen, ok |
 | Planet Schule | https://www.planet-schule.de | nicht abgerufen (bekanntes Angebot / vom SMK genannt) |
 
