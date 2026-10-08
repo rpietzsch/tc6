@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 190" role="img" aria-label="Beispieltabelle mit den Spalten Was, Menge, Einzelpreis und Gesamtpreis. Beschriftet sind Kopfzeile, Zeile, Spalte und Zelle.">
+  <!-- Das Style-Element gilt nur, wenn die Datei allein angezeigt wird (zum Beispiel auf GitHub).
+       Im Portal wird das Bild in die Seite eingebettet; dort gelten die Farben und Klassen aus assets/app.css. -->
+  <style>
+    :root{--ink:#13243A;--paper:#EDF1F4;--mark:#FFD23F}
+    @media (prefers-color-scheme:dark){:root{--ink:#E5EEF8;--paper:#12243B}}
+    text{font-family:"IBM Plex Mono",Consolas,Menlo,monospace;fill:var(--ink)}
+    .s{fill:none;stroke:var(--ink);stroke-width:.9}
+    .v{fill:none;stroke:var(--ink);stroke-width:.9;stroke-dasharray:7 4}
+    .k{fill:none;stroke:var(--ink);stroke-width:2.4}
+    .mk{fill:#13243A}
+    .pf{fill:var(--ink)}
+    .fl{fill:var(--paper);stroke:var(--ink);stroke-width:1.6}
+    .gz2{fill:var(--mark);stroke:var(--ink);stroke-width:1.2}
+  </style>
+  <defs><marker id="pf5" markerWidth="9" markerHeight="6" refX="9" refY="3" orient="auto-start-reverse"><path class="pf" d="M0,0 L9,3 L0,6z"/></marker></defs>
+  <rect class="gz2" x="20" y="30" width="370" height="36"/>
+  <text class="mk" x="70.0" y="53" font-size="12" font-weight="500" text-anchor="middle">Was</text>
+  <text class="mk" x="155.0" y="53" font-size="12" font-weight="500" text-anchor="middle">Menge</text>
+  <text class="mk" x="240.0" y="53" font-size="12" font-weight="500" text-anchor="middle">Einzelpreis</text>
+  <text class="mk" x="340.0" y="53" font-size="12" font-weight="500" text-anchor="middle">Gesamtpreis</text>
+  <text x="70.0" y="89" font-size="13" text-anchor="middle">Apfelsaft</text>
+  <text x="155.0" y="89" font-size="13" text-anchor="middle">3</text>
+  <text x="240.0" y="89" font-size="13" text-anchor="middle">1,50 €</text>
+  <text x="340.0" y="89" font-size="13" text-anchor="middle">4,50 €</text>
+  <text x="70.0" y="125" font-size="13" text-anchor="middle">Brezeln</text>
+  <text x="155.0" y="125" font-size="13" text-anchor="middle">2</text>
+  <text x="240.0" y="125" font-size="13" text-anchor="middle">2,00 €</text>
+  <text x="340.0" y="125" font-size="13" text-anchor="middle">4,00 €</text>
+  <rect class="s" x="20" y="30" width="370" height="108"/>
+  <line class="s" x1="20" y1="66" x2="390" y2="66"/>
+  <line class="s" x1="20" y1="102" x2="390" y2="102"/>
+  <line class="s" x1="120" y1="30" x2="120" y2="138"/>
+  <line class="s" x1="190" y1="30" x2="190" y2="138"/>
+  <line class="s" x1="290" y1="30" x2="290" y2="138"/>
+  <rect class="v" x="116" y="26" width="78" height="116"/>
+  <rect class="v" x="16" y="66" width="378" height="40"/>
+  <rect class="k" x="190" y="102" width="100" height="36"/>
+  <text x="155" y="15" font-size="14" font-weight="500" text-anchor="middle">SPALTE</text><path class="s" d="M155,19 V27" marker-end="url(#pf5)"/>
+  <text x="414" y="53" font-size="14" font-weight="500">KOPFZEILE</text><path class="s" d="M410,49 H392" marker-end="url(#pf5)"/>
+  <text x="414" y="91" font-size="14" font-weight="500">ZEILE</text><path class="s" d="M410,87 H396" marker-end="url(#pf5)"/>
+  <text x="240" y="178" font-size="14" font-weight="500" text-anchor="middle">ZELLE</text><path class="s" d="M240,164 V142" marker-end="url(#pf5)"/>
+</svg>

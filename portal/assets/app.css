@@ -76,6 +76,7 @@ figcaption{font-size:14px;color:var(--ink-2)}
 svg{max-width:100%;height:auto;display:block}
 td svg{max-width:none}
 svg text{font-family:var(--f-mono);fill:var(--ink)}
+svg text.mk{fill:var(--on-mark)}
 .k{fill:none;stroke:var(--ink);stroke-width:2.4}.s{fill:none;stroke:var(--ink);stroke-width:.9}
 .v{fill:none;stroke:var(--ink);stroke-width:.9;stroke-dasharray:7 4}.m{fill:none;stroke:var(--ink);stroke-width:.9;stroke-dasharray:14 3 2 3}
 .pf{fill:var(--ink)}.fl{fill:var(--paper);stroke:var(--ink);stroke-width:1.6}.gz{fill:var(--paper);stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round}
@@ -165,6 +166,28 @@ td.n,th.n{text-align:right}
 .sinn{margin:0}
 .sinn figure>img{align-self:stretch;width:100%;height:170px;object-fit:contain}
 .nachweis{font-size:14px;color:var(--ink-2)}
+.gkopf{background:var(--sheet);border:1px solid var(--line);padding:clamp(18px,4vw,40px);display:flex;flex-direction:column;gap:12px}
+.gkopf>*{margin:0}
+.gverz{columns:2 280px;padding-left:1.6em}
+.gblatt{margin-top:24px}
+.gex{gap:8px}
+.gfragen>li{margin-bottom:10px}
+.gfragen p{margin:0}
+@media print{
+  body{background:#fff;background-image:none;color:#000;font-size:11pt;padding:0}
+  :root{--paper:#fff;--sheet:#fff;--ink:#000;--ink-2:#333;--line:#999}
+  .feld,nav,.reset,.weiter,.quelle{display:none}
+  .gblatt{margin:0;border:0;padding:0;break-before:page}
+  .gkopf{border:0;padding:0}
+  figure,table,.merke,.gfragen>li{break-inside:avoid}
+  h2,h3{break-after:avoid}
+  .blatt figure>img{max-height:95mm;max-width:100%;width:auto}
+  .blatt figure>svg{max-height:95mm;width:auto;max-width:100%}
+  .sinn figure>img{height:120px}
+  .gblatt,.gex{gap:6pt}
+  .ex{border:0;padding:0}
+  a{color:#000}
+}
 .quelle{margin-top:14px;font-size:14px;color:var(--ink-2)}
 .merke p{margin:0}
 .fb.bad p{margin:0}

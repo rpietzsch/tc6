@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 160" role="img" aria-label="Ein Textabsatz aus drei Zeilen. Das Wort Radfahren ist markiert und steht für das Zeichenformat, der gestrichelte Rahmen um den ganzen Absatz steht für das Absatzformat.">
+  <!-- Das Style-Element gilt nur, wenn die Datei allein angezeigt wird (zum Beispiel auf GitHub).
+       Im Portal wird das Bild in die Seite eingebettet; dort gelten die Farben und Klassen aus assets/app.css. -->
+  <style>
+    :root{--ink:#13243A;--paper:#EDF1F4;--mark:#FFD23F}
+    @media (prefers-color-scheme:dark){:root{--ink:#E5EEF8;--paper:#12243B}}
+    text{font-family:"IBM Plex Mono",Consolas,Menlo,monospace;fill:var(--ink)}
+    .s{fill:none;stroke:var(--ink);stroke-width:.9}
+    .v{fill:none;stroke:var(--ink);stroke-width:.9;stroke-dasharray:7 4}
+    .k{fill:none;stroke:var(--ink);stroke-width:2.4}
+    .mk{fill:#13243A}
+    .pf{fill:var(--ink)}
+    .fl{fill:var(--paper);stroke:var(--ink);stroke-width:1.6}
+    .gz2{fill:var(--mark);stroke:var(--ink);stroke-width:1.2}
+  </style>
+  <defs><marker id="pf6" markerWidth="9" markerHeight="6" refX="9" refY="3" orient="auto-start-reverse"><path class="pf" d="M0,0 L9,3 L0,6z"/></marker></defs>
+  <rect class="fl" x="10" y="30" width="330" height="100"/>
+  <rect class="v" x="16" y="38" width="318" height="86"/>
+  <rect class="gz2" x="178" y="44" width="84" height="20"/>
+  <text x="22" y="58" font-size="14">Mein Hobby ist das </text><text class="mk" x="181.6" y="58" font-size="14">Radfahren</text>
+  <text x="22" y="82" font-size="14">Am Wochenende fahre ich mit</text>
+  <text x="22" y="106" font-size="14">meinen Freunden durch den Wald.</text>
+  <text x="372" y="52" font-size="14" font-weight="500">ZEICHENFORMAT</text>
+  <text x="372" y="68" font-size="11">Wort markieren:</text><text x="372" y="82" font-size="11">fett, kursiv, Farbe</text>
+  <path class="s" d="M368,54 H266" marker-end="url(#pf6)"/>
+  <text x="372" y="112" font-size="14" font-weight="500">ABSATZFORMAT</text>
+  <text x="372" y="128" font-size="11">Cursor im Absatz:</text><text x="372" y="142" font-size="11">zentriert, Abstand, Einzug</text>
+  <path class="s" d="M368,106 H338" marker-end="url(#pf6)"/>
+</svg>

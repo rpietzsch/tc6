@@ -22,6 +22,8 @@ Name, Adresse, Telefonnummer, Geburtsdatum, Schule und Fotos von dir sind persö
 
 > **Die Merksatz-Methode:** Denk dir einen Satz aus und nimm die Anfangsbuchstaben, Ziffern und Satzzeichen: „Mein Hund Bello frisst jeden Tag 2 Würste!“ wird zu `MHBfjT2W!`. Dieses Beispiel kennt jetzt jeder, erfinde also einen eigenen Satz, am besten einen längeren.
 
+![Schema: Aus einem Merksatz wird ein Passwort](../bilder/passwort.svg "Aus den Anfangsbuchstaben, der Ziffer und dem Satzzeichen eines Merksatzes wird ein Passwort. Erfinde deinen eigenen Satz.")
+
 ## Häufige Gefahren
 
 | Gefahr | Woran du sie erkennst | Was du tust |

@@ -15,6 +15,8 @@ Manches lässt sich in Sätzen schlecht sagen. Zahlen und Listen gehören in ein
 - Ein einzelnes Feld heißt **Zelle**.
 - Die **Kopfzeile** ganz oben sagt, was in jeder Spalte steht. Sie wird hervorgehoben.
 
+![Beispieltabelle mit beschrifteten Begriffen](../bilder/tabelle-begriffe.svg "Die Begriffe einer Tabelle an einem Beispiel.")
+
 Beispiel: eine Kostenaufstellung für ein Klassenfest.
 
 | Was | Menge | Einzelpreis | Gesamtpreis |

@@ -22,6 +22,8 @@ Schreibe zuerst den ganzen Text. Gestalte ihn danach. So verlierst du keine Zeit
 
 Für Zeichenformate markierst du zuerst die Zeichen. Für Absatzformate reicht es, wenn der Cursor im Absatz steht.
 
+![Textabsatz mit markiertem Wort und gestricheltem Rahmen](../bilder/zeichen-absatz.svg "Das markierte Wort bekommt ein Zeichenformat, der ganze Absatz ein Absatzformat.")
+
 ## Sechs Regeln
 
 1. Die Zeile bricht von allein um. Die Eingabetaste drückst du nur am Ende eines Absatzes.

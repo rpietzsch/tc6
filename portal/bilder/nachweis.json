@@ -230,5 +230,37 @@
   "lizenzKurz": "MIT",
   "eigen": true,
   "geprueft": "2026-10-07"
+ },
+ "passwort.svg": {
+  "titel": "Passwort aus einem Merksatz",
+  "urheber": "Projekt TC-Werkstatt",
+  "lizenz": "MIT",
+  "lizenzKurz": "MIT",
+  "eigen": true,
+  "geprueft": "2026-10-08"
+ },
+ "email.svg": {
+  "titel": "Bestandteile einer E-Mail",
+  "urheber": "Projekt TC-Werkstatt",
+  "lizenz": "MIT",
+  "lizenzKurz": "MIT",
+  "eigen": true,
+  "geprueft": "2026-10-08"
+ },
+ "tabelle-begriffe.svg": {
+  "titel": "Begriffe einer Tabelle",
+  "urheber": "Projekt TC-Werkstatt",
+  "lizenz": "MIT",
+  "lizenzKurz": "MIT",
+  "eigen": true,
+  "geprueft": "2026-10-08"
+ },
+ "zeichen-absatz.svg": {
+  "titel": "Zeichenformat und Absatzformat",
+  "urheber": "Projekt TC-Werkstatt",
+  "lizenz": "MIT",
+  "lizenzKurz": "MIT",
+  "eigen": true,
+  "geprueft": "2026-10-08"
  }
 }

@@ -11,6 +11,10 @@ Niederschwelliges Lernportal zum Computer-Teil des sächsischen Lehrplans Techni
 
 Grundlage ist Lernbereich 1 „Grundlagen im Umgang mit digitalen Medien“ sowie die Wahlbereiche 3, 5 und 6; siehe [`docs/lehrplan-auszug.md`](docs/lehrplan-auszug.md).
 
+## Für Lehrkräfte und Eltern
+
+Alle Blätter mit den Lösungen der Übungen auf einer Seite zum Lesen und Drucken: [Gesamtansicht](https://rpietzsch.github.io/tc6/gesamt.html). Als PDF: `node tools/gesamt-pdf.js` (nach `npm install && npx playwright install chromium`).
+
 ## Ausprobieren
 
 Online: https://rpietzsch.github.io/tc6/
@@ -29,6 +33,7 @@ Dann `http://localhost:8000` öffnen. Die Seite lädt ihre Kapitel nach und läu
 |---|---|
 | `portal/` | Die Seite: `index.html`, `assets/` (CSS, JavaScript, Schriften), `kapitel/` (Inhalte als Markdown), `bilder/` |
 | `docs/` | Format der Kapitel, Lehrplanauszug, Recherche, Linkprüfung |
+| `tools/` | Hilfen: Bilder von Wikimedia Commons holen (`bild-holen.js`), PDF der Gesamtansicht erzeugen (`gesamt-pdf.js`) |
 | `tests/` | Prüfskript für die Kapitel und Rauchtest im Browser (Playwright) |
 | `HANDOFF.md` | Stand, offene Entscheidungen und Plan |
 | `CLAUDE.md` | Arbeitsregeln für Claude Code |

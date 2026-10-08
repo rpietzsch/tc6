@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TC-Werkstatt Klasse 6: Gesamtansicht</title>
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body class="gesamt">
+
+<div class="wrap">
+<header class="gkopf">
+  <p class="eye">Technik/Computer · Klasse 6 · für Lehrkräfte und Eltern</p>
+  <h1>TC-Werkstatt: Gesamtansicht</h1>
+  <p>Alle Blätter mit den Lösungen der Übungen auf einer Seite zum Lesen und Drucken. Die interaktiven Bausteine (Morse-Übersetzer, Probier-Minicomputer) gibt es nur auf der Webseite. Zum Drucken oder Speichern als PDF den Druckdialog des Browsers benutzen. Zum Lernen: <a href="./">zur TC-Werkstatt</a>.</p>
+  <div id="gverzeichnis"></div>
+</header>
+
+<main id="main">
+<p class="fb" id="laden" role="status">Die Blätter werden geladen …</p>
+<noscript><p class="fb bad">Diese Seite braucht JavaScript.</p></noscript>
+</main>
+</div>
+
+<script src="assets/vendor/marked.umd.js"></script>
+<script src="assets/kapitel-parser.js"></script>
+<script src="assets/bausteine/morse.js"></script>
+<script src="assets/bausteine/minicomputer.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

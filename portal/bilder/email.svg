@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 300" role="img" aria-label="Zeichnung eines E-Mail-Fensters. Beschriftet sind Empfänger, Kopie, Betreff, Text und Anhang.">
+  <!-- Das Style-Element gilt nur, wenn die Datei allein angezeigt wird (zum Beispiel auf GitHub).
+       Im Portal wird das Bild in die Seite eingebettet; dort gelten die Farben und Klassen aus assets/app.css. -->
+  <style>
+    :root{--ink:#13243A;--paper:#EDF1F4;--mark:#FFD23F}
+    @media (prefers-color-scheme:dark){:root{--ink:#E5EEF8;--paper:#12243B}}
+    text{font-family:"IBM Plex Mono",Consolas,Menlo,monospace;fill:var(--ink)}
+    .s{fill:none;stroke:var(--ink);stroke-width:.9}
+    .v{fill:none;stroke:var(--ink);stroke-width:.9;stroke-dasharray:7 4}
+    .k{fill:none;stroke:var(--ink);stroke-width:2.4}
+    .mk{fill:#13243A}
+    .pf{fill:var(--ink)}
+    .fl{fill:var(--paper);stroke:var(--ink);stroke-width:1.6}
+    .gz2{fill:var(--mark);stroke:var(--ink);stroke-width:1.2}
+  </style>
+  <defs><marker id="pf4" markerWidth="9" markerHeight="6" refX="9" refY="3" orient="auto-start-reverse"><path class="pf" d="M0,0 L9,3 L0,6z"/></marker></defs>
+  <rect class="fl" x="10" y="10" width="350" height="282"/>
+  <rect class="gz2" x="10" y="10" width="350" height="28"/>
+  <text class="mk" x="22" y="29" font-size="14" font-weight="500">Neue Nachricht</text>
+  <text x="22" y="64" font-size="13">An:</text><rect class="s" x="86" y="46" width="260" height="26"/><text x="94" y="64" font-size="12">mama@beispiel.de</text>
+  <text x="22" y="94" font-size="13">Cc:</text><rect class="s" x="86" y="76" width="260" height="26"/>
+  <text x="22" y="124" font-size="12">Betreff:</text><rect class="s" x="86" y="106" width="260" height="26"/><text x="94" y="124" font-size="11">TC: Steckbrief Fahrrad zur Durchsicht</text>
+  <rect class="s" x="22" y="142" width="324" height="84"/>
+  <text x="32" y="164" font-size="12">Hallo Mama,</text><text x="32" y="182" font-size="12">anbei mein Steckbrief.</text><text x="32" y="200" font-size="12">Viele Grüße, Max</text>
+  <text x="22" y="248" font-size="12">Anhang: TC_Steckbrief_Fahrrad.odt</text>
+  <rect class="fl" x="250" y="256" width="96" height="26" rx="6"/><text x="298" y="274" font-size="13" font-weight="500" text-anchor="middle">Senden</text>
+  <text x="396" y="63" font-size="14" font-weight="500">EMPFÄNGER</text><path class="s" d="M392,59 H350" marker-end="url(#pf4)"/>
+  <text x="396" y="93" font-size="14" font-weight="500">KOPIE (CC)</text><path class="s" d="M392,89 H350" marker-end="url(#pf4)"/>
+  <text x="396" y="123" font-size="14" font-weight="500">BETREFF</text><path class="s" d="M392,119 H350" marker-end="url(#pf4)"/>
+  <text x="396" y="188" font-size="14" font-weight="500">TEXT</text><path class="s" d="M392,184 H350" marker-end="url(#pf4)"/>
+  <text x="396" y="252" font-size="14" font-weight="500">ANHANG</text><path class="s" d="M392,248 H350" marker-end="url(#pf4)"/>
+</svg>

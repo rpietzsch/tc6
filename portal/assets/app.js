@@ -216,6 +216,9 @@ function nachbearbeiten(body, kapitelUrl, spaeter) {
     })));
   }
 
+  // Relative Links (zum Beispiel ../gesamt.html) gelten ab dem Kapitelordner, nicht ab der Seite
+  $$('a[href]', body).forEach(a => { const r = a.getAttribute('href'); if (!/^(#|[a-z][a-z0-9+.-]*:)/i.test(r)) a.setAttribute('href', new URL(r, kapitelUrl).href); });
+
   // Externe Links in neuem Tab
   $$('a[href^="http"]', body).forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
 }
@@ -297,7 +300,7 @@ function quelle(sec) {
   const datei = sec.dataset.datei, pfad = KAPITEL_PFAD + datei;
   f.replaceChildren(
     ...(datei ? ['Dieses Blatt auf GitHub: ', a(REPO + '/blob/' + ZWEIG + '/' + pfad, datei), ' · ', a(REPO + '/edit/' + ZWEIG + '/' + pfad, 'bearbeiten'), ' · '] : []),
-    a(REPO, 'Projekt auf GitHub'));
+    a(REPO, 'Projekt auf GitHub'), ' · ', h('a', {href: 'gesamt.html'}, 'Gesamtansicht mit Lösungen'));
 }
 function zeige(id, scroll) {
   let i = blaetter.findIndex(s => s.id === id); if (i < 0) i = 0;
@@ -319,6 +322,36 @@ function zeigeLadefehler(e) {
   $('#laden').replaceWith(h('div', {class: 'fb bad', role: 'alert'},
     h('p', null, 'Die Blätter konnten nicht geladen werden.'),
     lokal ? h('p', null, 'Die Seite lädt ihre Kapitel mit fetch und läuft deshalb nicht direkt aus dem Dateisystem. Starte im Ordner portal einen kleinen Webserver, zum Beispiel mit „python3 -m http.server 8000“, und öffne http://localhost:8000.') : h('p', null, String(e.message || e))));
+}
+
+/* ---------- Gesamtansicht (gesamt.html): alle Blätter mit Lösungen, zum Lesen und Drucken ---------- */
+const BAUSTEIN_NAMEN = {morse: 'Morse-Übersetzer', minicomputer: 'Probier-Minicomputer'};
+function loesungen(ex) {
+  const kopf = h('h3', null, ex.title);
+  if (ex.type === 'order') return [kopf, h('p', null, ex.intro), h('ol', null, ...ex.items.map(t => h('li', null, t)))];
+  if (ex.type === 'sort') {
+    return [kopf, h('p', null, ex.frage), ...ex.cats.map((c, k) => h('p', null, h('b', null, c + ': '), ex.items.filter(i => i[1] === k).map(i => i[0]).join(', ')))];
+  }
+  return [kopf, h('ol', {class: 'gfragen'}, ...ex.q.map(q => h('li', null,
+    h('p', {class: 'frage'}, q.p),
+    q.num != null ? h('p', null, h('b', null, 'Lösung: ' + de(q.num))) : h('ul', null, ...q.o.map((t, k) => k === 0 ? h('li', null, h('b', null, t + ' (richtig)')) : h('li', null, t))),
+    q.e ? h('p', {class: 'leise'}, 'Erklärung: ' + q.e) : null)))];
+}
+async function startGesamt() {
+  const secs = await ladeKapitel(), main = $('#main'), verz = h('ol', {class: 'gverz'});
+  $('#laden').remove();
+  secs.forEach((sec, i) => {
+    sec.hidden = false; sec.classList.add('gblatt');
+    $$('[data-ex]', sec).forEach(el => { const ex = EX[el.dataset.ex]; el.classList.add('gex'); if (ex) el.replaceChildren(...loesungen(ex)); });
+    $$('ul.praxis', sec).forEach(ul => $$(':scope > li', ul).forEach(li => { const sp = h('span'); sp.append(...li.childNodes); li.append(h('label', null, h('input', {type: 'checkbox', disabled: true}), sp)); }));
+    $$('[data-baustein]', sec).forEach(el => {
+      const n = el.dataset.baustein;
+      if (BAUSTEIN_NAMEN[n]) { el.className = 'ex breit'; el.replaceChildren(h('p', {class: 'leise'}, 'Interaktiver Baustein „' + BAUSTEIN_NAMEN[n] + '“: nur auf der Webseite.')); } else el.remove();
+    });
+    main.append(sec);
+    if (i > 0) verz.append(h('li', null, h('a', {href: '#' + sec.id}, sec.dataset.t), sec.dataset.d ? ' (' + sec.dataset.d + ' min)' : ''));
+  });
+  $('#gverzeichnis').append(h('h2', null, 'Inhalt'), verz);
 }
 
 async function start() {
@@ -347,4 +380,4 @@ async function start() {
   if (matchMedia('(max-width:860px)').matches) $('#navd').open = false;
   fortschritt(); zeige(location.hash.slice(1) || blaetter[0].id, false);
 }
-start().catch(zeigeLadefehler);
+(document.body.classList.contains('gesamt') ? startGesamt() : start()).catch(zeigeLadefehler);

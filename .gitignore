@@ -13,3 +13,6 @@ tests/*.png
 
 # Lokale Claude-Code-Einstellungen
 .claude/settings.local.json
+
+# Erzeugte Gesamtfassung (tools/gesamt-pdf.js)
+gesamtfassung.pdf

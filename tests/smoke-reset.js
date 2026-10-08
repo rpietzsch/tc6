@@ -59,7 +59,7 @@ const lauf = async (url) => {
     pruefe('14 Blätter', n.blaetter === 14, n.blaetter);
     pruefe('19 Übungen', n.uebungen === 19, n.uebungen);
     pruefe('58 Praxisaufgaben', n.aufgaben === 58, n.aufgaben);
-    pruefe('eigene Zeichnungen (EVA-Schema, Programmfenster) eingebettet', n.svg === 2, n.svg);
+    pruefe('eigene Zeichnungen (SVG) eingebettet', n.svg === 6, n.svg);
     pruefe('Bausteine (Übersicht, Morse, Minicomputer)', n.bausteine === 3, n.bausteine);
     pruefe('Schriften lokal geladen', n.schriften > 0, n.schriften);
     pruefe('Start: 0 von 77', (await text()) === '0 von 77 Aufgaben', await text());
@@ -145,6 +145,17 @@ const lauf = async (url) => {
       bilder += r.n; kaputt.push(...r.fehl);
     }
     pruefe('alle ' + bilder + ' Bilder laden, jedes mit Alternativtext', bilder > 0 && kaputt.length === 0, JSON.stringify(kaputt));
+    // Gesamtansicht für Lehrkräfte: alle Blätter sichtbar, Lösungen im Text, keine interaktiven Bausteine
+    await p.goto(url + 'gesamt.html'); await p.waitForSelector('section.blatt');
+    const g = await p.evaluate(() => ({
+      blaetter: [...document.querySelectorAll('section.blatt')].filter(s => !s.hidden).length,
+      uebungen: document.querySelectorAll('.gex').length,
+      richtig: (document.body.textContent.match(/\(richtig\)/g) || []).length,
+      zahlen: (document.body.textContent.match(/Lösung: /g) || []).length,
+      interaktiv: document.querySelectorAll('#morse-in, #mc-start, .opt').length,
+      verzeichnis: document.querySelectorAll('.gverz li').length
+    }));
+    pruefe('Gesamtansicht: 14 Blätter, 19 Übungen mit Lösungen, Verzeichnis', g.blaetter === 14 && g.uebungen === 19 && g.richtig > 40 && g.zahlen > 0 && g.interaktiv === 0 && g.verzeichnis === 13, JSON.stringify(g));
     await p.goto(url + '#morsen'); await p.fill('#morse-in', 'Test 123');
     await p.goto(url + '#prog'); await p.click('#mc-start'); await p.click('#mc-a');
     await p.goto(url + '#eva'); await p.click('.ex[data-ex="eva-quiz"] .opt');

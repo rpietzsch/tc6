@@ -6,6 +6,7 @@
     @media (prefers-color-scheme:dark){:root{--ink:#E5EEF8;--paper:#12243B}}
     text{font-family:"IBM Plex Mono",Consolas,Menlo,monospace;fill:var(--ink)}
     .s{fill:none;stroke:var(--ink);stroke-width:.9}
+    .mk{fill:#13243A}
     .pf{fill:var(--ink)}
     .fl{fill:var(--paper);stroke:var(--ink);stroke-width:1.6}
     .gz2{fill:var(--mark);stroke:var(--ink);stroke-width:1.2}
@@ -14,8 +15,8 @@
   <!-- Fenster -->
   <rect class="fl" x="10" y="10" width="340" height="270"/>
   <rect class="gz2" x="10" y="10" width="340" height="28"/>
-  <text x="22" y="29" font-size="14" font-weight="500">Brief.odt</text>
-  <text x="296" y="29" font-size="14">–  □  ×</text>
+  <text class="mk" x="22" y="29" font-size="14" font-weight="500">Brief.odt</text>
+  <text class="mk" x="296" y="29" font-size="14">–  □  ×</text>
   <!-- Menü -->
   <line class="s" x1="10" y1="64" x2="350" y2="64"/>
   <text x="22" y="57" font-size="13">Datei</text><text x="76" y="57" font-size="13">Bearbeiten</text><text x="164" y="57" font-size="13">Ansicht</text>

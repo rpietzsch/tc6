@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 214" role="img" aria-label="Schema: Aus dem Merksatz „Mein Hund Bello frisst jeden Tag 2 Würste!“ werden die Anfangsbuchstaben, die Ziffer und das Satzzeichen genommen. Das Passwort lautet MHBfjT2W!">
+  <!-- Das Style-Element gilt nur, wenn die Datei allein angezeigt wird (zum Beispiel auf GitHub).
+       Im Portal wird das Bild in die Seite eingebettet; dort gelten die Farben und Klassen aus assets/app.css. -->
+  <style>
+    :root{--ink:#13243A;--paper:#EDF1F4;--mark:#FFD23F}
+    @media (prefers-color-scheme:dark){:root{--ink:#E5EEF8;--paper:#12243B}}
+    text{font-family:"IBM Plex Mono",Consolas,Menlo,monospace;fill:var(--ink)}
+    .s{fill:none;stroke:var(--ink);stroke-width:.9}
+    .v{fill:none;stroke:var(--ink);stroke-width:.9;stroke-dasharray:7 4}
+    .k{fill:none;stroke:var(--ink);stroke-width:2.4}
+    .mk{fill:#13243A}
+    .pf{fill:var(--ink)}
+    .fl{fill:var(--paper);stroke:var(--ink);stroke-width:1.6}
+    .gz2{fill:var(--mark);stroke:var(--ink);stroke-width:1.2}
+  </style>
+  <defs><marker id="pf3" markerWidth="9" markerHeight="6" refX="9" refY="3" orient="auto-start-reverse"><path class="pf" d="M0,0 L9,3 L0,6z"/></marker></defs>
+  <text x="4" y="13" font-size="11">MERKSATZ</text>
+  <rect class="fl" x="4" y="20" width="62" height="34"/><text x="35" y="42" font-size="13" text-anchor="middle">Mein</text>
+  <path class="s" d="M35,56 V96" marker-end="url(#pf3)"/>
+  <rect class="gz2" x="4" y="100" width="62" height="44"/><text class="mk" x="35" y="131" font-size="24" font-weight="500" text-anchor="middle">M</text>
+  <rect class="fl" x="74" y="20" width="62" height="34"/><text x="105" y="42" font-size="13" text-anchor="middle">Hund</text>
+  <path class="s" d="M105,56 V96" marker-end="url(#pf3)"/>
+  <rect class="gz2" x="74" y="100" width="62" height="44"/><text class="mk" x="105" y="131" font-size="24" font-weight="500" text-anchor="middle">H</text>
+  <rect class="fl" x="144" y="20" width="62" height="34"/><text x="175" y="42" font-size="13" text-anchor="middle">Bello</text>
+  <path class="s" d="M175,56 V96" marker-end="url(#pf3)"/>
+  <rect class="gz2" x="144" y="100" width="62" height="44"/><text class="mk" x="175" y="131" font-size="24" font-weight="500" text-anchor="middle">B</text>
+  <rect class="fl" x="214" y="20" width="62" height="34"/><text x="245" y="42" font-size="13" text-anchor="middle">frisst</text>
+  <path class="s" d="M245,56 V96" marker-end="url(#pf3)"/>
+  <rect class="gz2" x="214" y="100" width="62" height="44"/><text class="mk" x="245" y="131" font-size="24" font-weight="500" text-anchor="middle">f</text>
+  <rect class="fl" x="284" y="20" width="62" height="34"/><text x="315" y="42" font-size="13" text-anchor="middle">jeden</text>
+  <path class="s" d="M315,56 V96" marker-end="url(#pf3)"/>
+  <rect class="gz2" x="284" y="100" width="62" height="44"/><text class="mk" x="315" y="131" font-size="24" font-weight="500" text-anchor="middle">j</text>
+  <rect class="fl" x="354" y="20" width="62" height="34"/><text x="385" y="42" font-size="13" text-anchor="middle">Tag</text>
+  <path class="s" d="M385,56 V96" marker-end="url(#pf3)"/>
+  <rect class="gz2" x="354" y="100" width="62" height="44"/><text class="mk" x="385" y="131" font-size="24" font-weight="500" text-anchor="middle">T</text>
+  <rect class="fl" x="424" y="20" width="62" height="34"/><text x="455" y="42" font-size="13" text-anchor="middle">2</text>
+  <path class="s" d="M455,56 V96" marker-end="url(#pf3)"/>
+  <rect class="gz2" x="424" y="100" width="62" height="44"/><text class="mk" x="455" y="131" font-size="24" font-weight="500" text-anchor="middle">2</text>
+  <rect class="fl" x="494" y="20" width="62" height="34"/><text x="525" y="42" font-size="13" text-anchor="middle">Würste!</text>
+  <path class="s" d="M525,56 V96" marker-end="url(#pf3)"/>
+  <rect class="gz2" x="494" y="100" width="62" height="44"/><text class="mk" x="525" y="131" font-size="24" font-weight="500" text-anchor="middle">W!</text>
+  <text x="280" y="172" font-size="13" text-anchor="middle">Anfangsbuchstaben, Ziffer und Satzzeichen ergeben das Passwort:</text>
+  <text x="280" y="204" font-size="28" font-weight="500" text-anchor="middle">MHBfjT2W!</text>
+</svg>

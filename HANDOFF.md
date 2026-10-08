@@ -21,6 +21,8 @@ Die Seite unter `portal/` läuft ohne Build und ohne externe Anfragen. Die Inhal
 - Hell- und Dunkelmodus über CSS-Tokens, Handybreite getestet, Navigation über `#anker`.
 - Schriften liegen lokal (`assets/fonts/`), `marked` liegt als Datei im Repository (`assets/vendor/`). Die Seite ruft keine fremden Server auf.
 
+- Gesamtansicht für Lehrkräfte und Eltern: `portal/gesamt.html` zeigt alle Blätter untereinander mit den Lösungen der Übungen (richtige Antwort mit „(richtig)“, Erklärung, Zuordnungen, Reihenfolgen) und hat Druckstile (je Blatt eine neue Seite). Die interaktiven Bausteine sind durch einen Hinweis ersetzt. Verlinkt von der Übersicht („Für Eltern und Lehrkräfte“) und vom Seitenfuß. Dieselben Skripte wie die Werkstatt (`body.gesamt` schaltet in `assets/app.js` auf `startGesamt()`). PDF zum Weitergeben: `node tools/gesamt-pdf.js` erzeugt `gesamtfassung.pdf` (ca. 50 Seiten A4, nicht im Repository, steht in `.gitignore`). Die Lösungen sind damit auch für Schüler sichtbar; das war schon im Repository so.
+
 Ausgeliefert wird `portal/` über den Workflow `.github/workflows/pages.yml` (GitHub Pages, Quelle „GitHub Actions“). Der Workflow führt vorher das Prüfskript aus. Bei Pull Requests läuft `.github/workflows/check.yml` (Prüfskript und Rauchtest).
 
 | Gruppe | Blatt (`#id`) | Lehrplanbezug |
@@ -111,6 +113,7 @@ Umgesetzt (18 Bilder, rund 750 KB, alle lokal in `portal/bilder/`):
 - `hardsoft`: eigene Zeichnung der Bedienelemente (Fenster, Menü, Symbol, Schaltfläche) als SVG.
 - `dateien`: Speichermedien von der Diskette über CD, Festplatte (geöffnet), SSD bis USB-Stick und SD-Karte.
 - `mini`: Calliope mini und micro:bit. `morsen`: Morsetaste und Nachbau eines Chappe-Telegrafen.
+- Vier weitere eigene Zeichnungen (SVG): `sicher` (Passwort aus Merksatz), `mail` (Aufbau einer E-Mail), `tabelle` (Zeile, Spalte, Zelle, Kopfzeile), `text` (Zeichen- und Absatzformat). Zusammen 18 Fotos und Zeichnungen aus Commons plus 6 eigene SVG.
 
 Wie es funktioniert:
 
@@ -121,7 +124,7 @@ Wie es funktioniert:
 - Neues Bild holen: `node tools/bild-holen.js "Dateiname auf Commons" ziel.webp 640`. Das Werkzeug liest Lizenz und Urheber über die Commons-Schnittstelle, lehnt andere Lizenzen ab, verkleinert zu WebP und schreibt den Nachweis. Vorher die Commons-Seite lesen (Personen oder Marken im Bild vermeiden) und danach Alternativtext und Bildunterschrift selbst schreiben.
 - Die Angaben zu Urheber und Lizenz stammen aus den Metadaten der Commons-Seite vom 2026-10-07. Bei Zweifeln (zum Beispiel „gemeinfrei“ bei Bildern von Fremdseiten) das Bild austauschen.
 
-Mögliche Erweiterungen: Bilder für `web`, `sicher`, `mail`, `text` und `tabelle` (zum Beispiel Beispielfenster als eigene Zeichnungen), ein Foto eines Sensors oder Aktors für `mini`, Rauchzeichen oder Zeigertelegraf für `morsen`.
+Bewusst ohne Bild: `web`, `projekt` und die Übersicht. Mögliche Erweiterungen: Foto eines Sensors oder Aktors für `mini`, Rauchzeichen oder Zeigertelegraf für `morsen`.
 
 ## Bekannte Grenzen
 

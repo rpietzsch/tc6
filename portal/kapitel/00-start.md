@@ -19,10 +19,11 @@ Hier findest du alles, was im Computer-Teil des Fachs TC dran ist: wie ein Compu
 
 {{baustein: uebersicht}}
 
-## Für Eltern
+## Für Eltern und Lehrkräfte
 
 - Grundlage ist der Lernbereich 1 „Grundlagen im Umgang mit digitalen Medien“ (13 Pflichtstunden) samt den Wahlbereichen „Nachrichten übertragen“, „EVA-Prinzip bei Einplatinenrechnern“ und „Schulinterne digitale Kommunikation“. Die Werkstatt-Lernbereiche Konstruieren und Fertigen sind hier nicht enthalten.
 - Die Blätter gehen an einigen Stellen etwas tiefer, als es 13 Stunden erlauben, damit genug Übungsstoff für das Schuljahr da ist. Welche Programme und welche Lernplattform die Schule nutzt, erfährt man bei der Schule. Die Aufgaben funktionieren mit jeder Textverarbeitung, zum Beispiel dem kostenlosen [LibreOffice](https://de.libreoffice.org).
+- Alle Blätter mit den Lösungen der Übungen stehen auf einer Seite zum Lesen und Drucken: [Gesamtansicht](../gesamt.html).
 - Für das Blatt E-Mail braucht das Kind ein E-Mail-Konto, das die Eltern erlauben, oder es schreibt gemeinsam mit einem Elternteil von dessen Konto. Für das Programmieren ist kein Gerät nötig, ein Probier-Minicomputer ist eingebaut.
 
 ## Offizielle Angebote

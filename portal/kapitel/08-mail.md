@@ -13,6 +13,8 @@ Mit E-Mail oder der Lernplattform der Schule tauschst du Arbeitsstände aus, zum
 
 `vorname.nachname@schule-beispiel.de`: Vor dem @ steht der Nutzername, dahinter der Anbieter. Jede Adresse gibt es nur einmal.
 
+![Zeichnung eines E-Mail-Fensters mit beschrifteten Teilen](../bilder/email.svg "So ist eine E-Mail aufgebaut: Empfänger, Kopie, Betreff, Text und Anhang.")
+
 ## Die Grundfunktionen
 
 | Funktion | Was passiert |
